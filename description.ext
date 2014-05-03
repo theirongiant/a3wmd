@@ -1,0 +1,32 @@
+description.ext	
+
+//MD- set up globals, seem to be a set list of standard variables rather than mission specific ones
+//MD- This is probably a good starting point
+//MD- https://community.bistudio.com/wiki/Description.ext
+
+respawn="BASE"; //MD- One of "NONE", "BIRD", "INSTANT", "BASE", "GROUP" or "SIDE"
+respawnDelay=15; //MD- Spawn delay in seconds
+disabledAI=1; //MD- Prevent AI from taking over from Logged out player
+disableChannels[] = {}; // {0} to disable global //MD- Array of channels 1=Side, 2=Command, 3=Group etc
+joinUnassigned = 0; //MD- Player joins a side by default, switched off here
+enableItemsDropping = 0; //MD- Disable dropping items while swimming
+weaponPool = 0; //MD- Weapons persist across missions
+corpseRemovalMinTime = 15*60;
+corpseRemovalMaxTime = 15*60;
+wreckRemovalMinTime = 5*60;
+wreckRemovalMaxTime = 10*60;
+enableDebugConsole = 1;
+loadScreen = "Loading.jpg";
+onPauseScript = "client\clientEvents\onPause.sqf"; //MD- best to read entry
+class Header //MD- What is shown in server browser - https://community.bistudio.com/wiki/Multiplayer_Game_Types
+{						  
+	gameType=Sandbox;
+	minPlayers=1;
+	maxPlayers=108;
+};
+author="Team Wasteland - A3Wasteland.com";
+onLoadName = "A3Wasteland Altis";
+onLoadMission = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
+overviewText = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
+overviewTextLocked = "Wasteland is a harsh survival sandbox where two teams and independent players fight for survival.";
+overviewPicture = "Loading.jpg";

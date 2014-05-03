@@ -1,0 +1,310 @@
+Order of Execution
+------------------
+
+This lists a rough order of execution (inclusion might be a better term). Each level of indention shows the scripts that
+are referenced by the parent. One's starting with '>' are ones I've checked through manually. It's not entirely accurate as
+some of the client/items init scripts don't directly reference all the scripts in the folder but I'm presuming that the actions
+pull them in but it made sense to list the under the init scripts currently
+
+
+
+>description.ext
+>./init.sqf
+	>./globalCompile.sqf
+
+		>./server/functions/cargoToPairs.sqf
+		>./server/functions/detachTowedObject.sqf
+		>./server/functions/findSafePos.sqf
+		>./server/functions/fn_BoundingBoxReal.sqf
+		>./server/functions/fn_filterString.sqf
+		>./server/functions/fn_findString.sqf
+		>./server/functions/fn_getPos3D.sqf
+		>./server/functions/fn_splitString.sqf
+		>./server/functions/fn_vehicleInit.sqf
+		>./server/functions/network/generateKey.sqf
+		>./server/functions/getBallMagazine.sqf
+		>./server/functions/getFwdVelocity.sqf
+		>./server/functions/getHitPoints.sqf
+		>./server/functions/getMagAmmoCount.sqf
+		>./server/functions/getPublicVar.sqf
+		>./server/functions/isConfigOn.sqf
+		>./server/functions/pushVehicleBack.sqf
+		>./server/functions/relativePos.sqf
+		>./server/functions/removeNegativeScore.sqf
+		>./client/functions/switchMoveGlobal.sqf
+		>./client/functions/getMoveWeapons.sqf
+
+	>./config.sqf
+	>./storeConfig.sqf
+	>./briefing.sql
+
+==============================================================================
+
+	>./client/init.sqf* if client
+
+		>./client/functions/bannedNames.sqf
+
+		>./client/actions/init.sqf
+
+			./client/actions/gui.hpp
+			./client/actions/notify.sqf
+			./client/actions/pickupMoney.sqf
+			./client/actions/refresh.sqf
+			./client/actions/set.sqf
+			./client/actions/start.sqf
+
+		>./client/inventory/init.sqf
+			
+			./client/inventory/add.sqf
+			./client/inventory/count.sqf
+			./client/inventory/create.sqf
+			./client/inventory/define.sqf
+			./client/inventory/drop.sqf
+			./client/inventory/get.sqf
+			./client/inventory/is_full.sqf
+			./client/inventory/list.sqf
+			./client/inventory/mutex.sqf
+			./client/inventory/remove.sqf
+			./client/inventory/set.sqf
+			./client/inventory/take.sqf
+			./client/inventory/takeable.sqf
+			./client/inventory/use.sqf
+
+		>./client/items/init.sqf
+
+			./client/items/survival/init.sqf
+
+				./client/items/survival/drink.sqf
+				./client/items/survival/eat.sqf
+				./client/items/survival/energy_drink.sqf
+
+			./client/items/jerrycan/init.sqf
+
+				./client/items/jerrycan/can_refill.sqf
+				./client/items/jerrycan/can_refuel.sqf
+				./client/items/jerrycan/can_syphon.sqf
+				./client/items/jerrycan/refill.sqf
+				./client/items/jerrycan/refuel.sqf
+				./client/items/jerrycan/syphon.sqf
+
+			./client/items/misc/init.sqf
+
+				./client/items/misc/can_repair.sqf
+				./client/items/misc/heal.sqf
+				./client/items/misc/repair.sqf
+
+			./client/items/beacon/init.sqf
+
+				./client/items/beacon/can_pack.sqf
+				./client/items/beacon/can_steal.sqf
+				./client/items/beacon/can_use.sqf
+				./client/items/beacon/deploy.sqf
+				./client/items/beacon/mutex.sqf
+				./client/items/beacon/pack.sqf
+				./client/items/beacon/steal.sqf
+				./client/items/beacon/toggle_spawn_permissions.sqf
+
+			./client/items/camonet/init.sqf
+
+				./client/items/camonet/can_pack.sqf
+				./client/items/camonet/mutex.sqf
+				./client/items/camonet/pack.sqf
+				./client/items/camonet/unpack.sqf
+
+			./client/items/warchest/init.sqf
+
+				./client/items/warchest/access.sqf
+				./client/items/warchest/can_access.sqf
+				./client/items/warchest/can_hack.sqf
+				./client/items/warchest/can_pack.sqf
+				./client/items/warchest/defines.sqf
+				./client/items/warchest/deploy.sqf
+				./client/items/warchest/deposit.sqf
+				./client/items/warchest/dialog.sqf
+				./client/items/warchest/hack.sqf
+				./client/items/warchest/mutex.sqf
+				./client/items/warchest/nearest.sqf
+				./client/items/warchest/pack.sqf
+				./client/items/warchest/refresh.sqf
+				./client/items/warchest/withdraw.sqf
+
+		>./client/functions/clientCompile.sqf
+		
+				./client/functions/nofityClient.sqf
+				./client/functions/playUntil.sqf
+
+				./client/clientEvents/onRespawn.sqf
+				./client/clientEvents/onKilled.sqf
+				./client/clientEvents/onKeyPress.sqf
+
+				./client/functions/addPushPlaceAction.sqf
+				./client/functions/addWeaponInventory.sqf
+				./client/functions/canPushPlaneBack.sqf
+				./client/functions/canWear.sqf
+				./client/systems/adminPanel/findHackedVehicles.sqf
+				./client/functions/fn_fitsInventory.sqf
+				./client/functions/getDefaultClothing.sqf
+				./client/functions/getFullMove.sqf
+				./client/functions/getMoveParams.sqf
+				./client/functions/isWeaponType.sqf
+				./client/functions/parseMove.sqf
+				./client/functions/serverMessage.sqf
+				./client/functions/titleTextMessage.sqf
+				./client/functions/uniformConverter.sqf
+				./client/functions/vehicleSideCfg.sqf
+
+				./client/systems/playerMenu/init.sqf
+				./client/functions/playerSpawn.sqf
+				./client/functions/playerSetup.sqf
+				./client/functions/playerSetupStart.sqf
+				./client/functions/playerSetupGear.sqf
+				./client/functions/playerSetupEnd.sqf
+				./client/functions/spawnAction.sqf
+
+				./client/functions/clientTimeSync.sqf
+
+				./client/functions/updatePlayerMssionMarkers.sqf
+				./client/functions/updatePlayerRadarMarkers.sqf
+				./client/functions/updateTeamKiller.sqf
+
+				./client/functions/doTeamKillAction.sqf
+				./client/functions/showTeamKillMessage.sqf
+
+				./client/functions/loadRespawnDialog.sqf
+				./client/systems/generalStore/loadGenStore.sqf
+				./client/systems/gunStore/loadGunStore.sqf
+				./client/functions/gearProperties.sqf
+				./client/functions/getCapacity.sqf
+				./client/functions/getItemInfo.sqf
+				./client/functions/requestStoreObject.sqf
+
+				./client/systems/vehicleStore/applyVehicleTexture.sqf
+
+		./persistence/playeres/c_setupPlayerDB.sqf
+		./territory/client/territoryActivityHandler.sqf
+		./territory/client/createCaptureTriggers.sqf
+		./client/clientEvents/onMouseWheel.sqf
+
+		./client/functions/initSurvival.sqf
+		./client/systems/hud/playerHud/sqf
+		./client/functions/playerTags.sqf
+		./client/functions/groupTags.sqf
+
+		./client/functions/createTownMarkers.sqf
+		./client/functions/createGunStoreMarkers.sqf
+		./client/functions/createGeneralStoreMarkers.sqf
+		./client/functions/createVehicleStoreMarkers.sqf
+
+		./client/functions/drawPlayerIcons.sqf
+		./addons/fpsFix/vehicleManager.sqf
+		./addons/Lootspawner/LSclientscan.sqf
+
+
+===============================================================================
+
+
+	./server/init.sqf* if server
+
+		>./server/antihack/setup.sqf
+
+			>./server/antihack/compileFuncs.sqf
+
+				>./server/functions/network/fn_MPexec.sqf
+
+					>./client/functions/defineServerRules.sqf
+
+				>./server/functions/network/fn_MP.sqf
+				>./server/antihack/flagHandler.sqf
+				>./server/antihack/serverSide.sqf
+
+					>./server/antihack/filterExecAttempt.sqf
+
+						>./client/functions/defineServerRules.sqf
+						>./initPlayerServer.sqf ?????? Doesn't exist in mod but is a standard file
+
+				>./server/antihack/chatBroadcast.sqf
+				>./server/antihack/notifyAdminMenu.sqf
+				>./server/antihack/payload.sqf
+
+			>./server/antihack/flagHandler.sqf
+			>./server/antihack/serverSide.sqf
+
+		>./server/admins.sqf
+
+			>./A3Wasteland_settings/admins.sqf
+
+		>./server/functions/serverVars.sqf
+		>./server/functions/serverCompile.sqf
+
+			>./server/missions/factoryMethods/createCargoItem.sqf
+			>./server/missions/factoryMethods/createClientMarker.sqf
+			>./server/missions/factoryMethods/createUnits/largeDivers.sqf
+			>./server/missions/factoryMethods/createUnits/largeGroup.sqf
+			>./server/missions/factoryMethods/createUnits/midGroup.sqf
+			>./server/missions/factoryMethods/createMissionLocation.sqf
+			>./server/missions/factoryMethods/createMissionVehicle.sqf
+			>./server/missions/factoryMethods/createMissionVehicle2.sqf
+			>./server/missions/factoryMethods/createUnits/createRandomSoldier.sqf
+			>./server/missions/factoryMethods/createUnits/createRandomSoldierC.sqf
+			>./server/missions/factoryMethods/createUnits/createRandomAquaticSoldier.sqf
+			>./server/missions/factoryMethods/createUnits/smallDivers.sqf
+			>./server/missions/factoryMethods/createUnits/smallGroup.sqf
+			>./server/missions/factoryMethods/createSupplyDrop.sqf
+			>./server/missions/factoryMethods/createWaitCondition.sqf
+			>./server/missions/factoryMethods/deleteClientMarker.sqf
+
+			>./server/functions/addMilCap.sqf
+			>./server/functions/checkHackedVehicles.sqf
+			>./server/functions/cleanVehicleWreck.sqf
+			>./server/functions/defendArea.sqf
+			>./server/functions/findClientPlayer.sqf
+			>./server/functions/fn_refillbox.sqf
+			>./server/functions/fn_refilltruck.sqf
+			>./server/functions/fn_replaceMagazines.sqf
+			>./server/functions/fn_replaceWeapons.sqf
+			>./server/functions/fn_selectRandomWeighted.sqf
+			>./server/functions/hintBroadcast.sqf
+			>./server/functions/processItems.sqf
+			>./server/functions/refillPrimaryAmmo.sqf
+			>./server/functions/setMissionSkill.sqf
+			>./server/functions/spawnStoreObject.sqf
+			>./server/functions/vehicleRepair.sqf
+			>./server/functions/vehicleSetup.sqf
+			>./server/functions/serverPlayerDied.sqf
+
+			>./server/spawning/boatCreation.sqf
+
+				>./server/functions/vehicle.sqf
+
+			>./server/spawning/objectCreation.sqf
+			>./server/spawning/planeCreation.sqf
+			>./server/spawning/randomWeapon.sqf
+			>./server/spawning/staticHeliCreation.sqf
+			>./server/spawning/vehicleCreation.sqf
+
+				>./server/functions/vehicle.sqf
+
+		>./server/functions/broadcaster.sqf
+		>./server/functions/relations.sqf
+		>./A3Wasteland_settings/init.sqf
+
+===============================================================================		
+
+	./addons/R3F_ARTY_AND_LOG/init.sqf
+
+		./addons/R3F_ARTY_AND_LOG/config.sqf
+		./addons/R3F_ARTY_AND_LOG/R3F_ARTY_disable_enable.sqf
+		./addons/R3F_ARTY_AND_LOG/R3F_LOG_disable_enable.sqf
+		./addons/R3F_ARTY_AND_LOG/en_strings_lang.sqf
+		./addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf
+		./addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf
+
+	./addons/proving_Ground/init.sqf
+
+		./addons/proving_Ground/def.hpp
+		?????
+
+	>./addons/scripts/DynamicWeatherEffects.sqf
+	>./addons/JumpMF/init.sqf
+
+		>./addons/JumpMF/detect_key_input.sqf
