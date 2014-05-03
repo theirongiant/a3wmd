@@ -14,13 +14,13 @@ if (isNil "ahSetupDone") then
 	_packetKey = call generateKey;
 	
 	_assignPacketKey = "";
-	//MD- Add up to 49 spaces to assignPacketKey
+	//MD- Add up to 49 spaces to assignPacketKey - not sure why?
 	for "_x" from 0 to (floor random 50) do { _assignPacketKey = _assignPacketKey + " " };
 	
 	//MD- add: private "_mpPacketKey"
 	_assignPacketKey = _assignPacketKey + 'private "_mpPacketKey";';
 
-	//MD- add another 49-ish spaces to assignPacketKey
+	//MD- add another 49-ish spaces to assignPacketKey - who knows?
 	for "_x" from 0 to (floor random 50) do { _assignPacketKey = _assignPacketKey + " " };
 
 	//MD- add: call compile toString
@@ -37,6 +37,12 @@ if (isNil "ahSetupDone") then
 	} forEach toArray _packetKey;
 
 	//MD- ???? Need to test what the fuck this does ???
+	//MD- Okay 
+	//MD- https://community.bistudio.com/wiki/toArray - converts a string into an array of character codes
+	//MD- https://community.bistudio.com/wiki/str - converts variable into a string
+	//MD- to clarify, on an array([1,2]) it will return "[1,2]" rather than "12"
+	//MD- After some testing _assignPacketKey is: private "_mpPacketKey"; call compile toString [23,54,106,102,104....]
+	//MD- When the call line is run the array will toString to _mpPacketKey = "a"+"3"+"5"+"g"....
 	_assignPacketKey = _assignPacketKey + (str toArray _packetKeyArray) + "; ";
 	
 	//MD- Repeat the above process for _flagChecksum
@@ -55,7 +61,7 @@ if (isNil "ahSetupDone") then
 	_assignChecksum = _assignChecksum + (str toArray _checksumArray) + "; ";
 
 	
-
+	//MD- These two strings are then sent to compileFuncs as parameters
 	A3W_network_compileFuncs = compile ("['" + _assignChecksum + "','" + _assignPacketKey + "'] call compile preprocessFileLineNumbers 'server\antihack\compileFuncs.sqf'");
 	_networkCompile = [] spawn A3W_network_compileFuncs;
 	publicVariable "A3W_network_compileFuncs";

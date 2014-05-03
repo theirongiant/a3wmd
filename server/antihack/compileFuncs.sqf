@@ -3,11 +3,20 @@
 //	@file Author: AgentRev
 //	@file Created: 04/01/2014 02:51
 
+//MD- Called from antihack/setup.sqf with 2 parameters 
+//MD- param 0 is code to declare and initialise _flagChecksum with a random string
+//MD- param 1 is code to declare and initialise _mpPacketKey with a random string
+
 private ["_assignChecksum", "_assignPacketKey"];
 
+//MD- https://community.bistudio.com/wiki/BIS_fnc_param
+//MD- Parameter cleaning, takes [array, index, default, [array of acceptable type examples], required count]
+//MD- if array[index] is null or of the wrong type then default is used.
 _assignChecksum = [_this, 0, "", [""]] call BIS_fnc_param;
 _assignPacketKey = [_this, 1, "", [""]] call BIS_fnc_param;
 
+//MD- Okay
+//MD- As far as I can tell this should return false as _flagChecksum should equal a random string???
 if (call compile (_assignChecksum + "isNil _flagChecksum")) then
 {
 	TPG_fnc_MPexec = compileFinal (_assignPacketKey + (preprocessFileLineNumbers "server\functions\network\fn_MPexec.sqf"));
