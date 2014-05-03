@@ -130,55 +130,55 @@ pull them in but it made sense to list the under the init scripts currently
 
 		>./client/functions/clientCompile.sqf
 		
-				./client/functions/nofityClient.sqf
-				./client/functions/playUntil.sqf
+			./client/functions/nofityClient.sqf
+			./client/functions/playUntil.sqf
 
-				./client/clientEvents/onRespawn.sqf
-				./client/clientEvents/onKilled.sqf
-				./client/clientEvents/onKeyPress.sqf
+			./client/clientEvents/onRespawn.sqf
+			./client/clientEvents/onKilled.sqf
+			./client/clientEvents/onKeyPress.sqf
 
-				./client/functions/addPushPlaceAction.sqf
-				./client/functions/addWeaponInventory.sqf
-				./client/functions/canPushPlaneBack.sqf
-				./client/functions/canWear.sqf
-				./client/systems/adminPanel/findHackedVehicles.sqf
-				./client/functions/fn_fitsInventory.sqf
-				./client/functions/getDefaultClothing.sqf
-				./client/functions/getFullMove.sqf
-				./client/functions/getMoveParams.sqf
-				./client/functions/isWeaponType.sqf
-				./client/functions/parseMove.sqf
-				./client/functions/serverMessage.sqf
-				./client/functions/titleTextMessage.sqf
-				./client/functions/uniformConverter.sqf
-				./client/functions/vehicleSideCfg.sqf
+			./client/functions/addPushPlaceAction.sqf
+			./client/functions/addWeaponInventory.sqf
+			./client/functions/canPushPlaneBack.sqf
+			./client/functions/canWear.sqf
+			./client/systems/adminPanel/findHackedVehicles.sqf
+			./client/functions/fn_fitsInventory.sqf
+			./client/functions/getDefaultClothing.sqf
+			./client/functions/getFullMove.sqf
+			./client/functions/getMoveParams.sqf
+			./client/functions/isWeaponType.sqf
+			./client/functions/parseMove.sqf
+			./client/functions/serverMessage.sqf
+			./client/functions/titleTextMessage.sqf
+			./client/functions/uniformConverter.sqf
+			./client/functions/vehicleSideCfg.sqf
 
-				./client/systems/playerMenu/init.sqf
-				./client/functions/playerSpawn.sqf
-				./client/functions/playerSetup.sqf
-				./client/functions/playerSetupStart.sqf
-				./client/functions/playerSetupGear.sqf
-				./client/functions/playerSetupEnd.sqf
-				./client/functions/spawnAction.sqf
+			./client/systems/playerMenu/init.sqf
+			./client/functions/playerSpawn.sqf
+			./client/functions/playerSetup.sqf
+			./client/functions/playerSetupStart.sqf
+			./client/functions/playerSetupGear.sqf
+			./client/functions/playerSetupEnd.sqf
+			./client/functions/spawnAction.sqf
 
-				./client/functions/clientTimeSync.sqf
+			./client/functions/clientTimeSync.sqf
 
-				./client/functions/updatePlayerMssionMarkers.sqf
-				./client/functions/updatePlayerRadarMarkers.sqf
-				./client/functions/updateTeamKiller.sqf
+			./client/functions/updatePlayerMssionMarkers.sqf
+			./client/functions/updatePlayerRadarMarkers.sqf
+			./client/functions/updateTeamKiller.sqf
 
-				./client/functions/doTeamKillAction.sqf
-				./client/functions/showTeamKillMessage.sqf
+			./client/functions/doTeamKillAction.sqf
+			./client/functions/showTeamKillMessage.sqf
 
-				./client/functions/loadRespawnDialog.sqf
-				./client/systems/generalStore/loadGenStore.sqf
-				./client/systems/gunStore/loadGunStore.sqf
-				./client/functions/gearProperties.sqf
-				./client/functions/getCapacity.sqf
-				./client/functions/getItemInfo.sqf
-				./client/functions/requestStoreObject.sqf
+			./client/functions/loadRespawnDialog.sqf
+			./client/systems/generalStore/loadGenStore.sqf
+			./client/systems/gunStore/loadGunStore.sqf
+			./client/functions/gearProperties.sqf
+			./client/functions/getCapacity.sqf
+			./client/functions/getItemInfo.sqf
+			./client/functions/requestStoreObject.sqf
 
-				./client/systems/vehicleStore/applyVehicleTexture.sqf
+			./client/systems/vehicleStore/applyVehicleTexture.sqf
 
 		./persistence/playeres/c_setupPlayerDB.sqf
 		./territory/client/territoryActivityHandler.sqf

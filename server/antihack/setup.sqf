@@ -31,7 +31,7 @@ if (isNil "ahSetupDone") then
 
 	//MD- add each character in packetkey to packetKeyArray so it looks like _mpPacketKey = "a"+"3"+"5"+"g"...
 	{
-		//MD- https://community.bistudio.com/wiki/forEach
+		//MD- https://community.bistudio.com/wiki/forEach - _forEachIndex is the current index, _x is the current item
 		if (_forEachIndex > 0) then { _packetKeyArray = _packetKeyArray + "+" };
 		_packetKeyArray = _packetKeyArray + format ['"%1"', toString [_x]];
 	} forEach toArray _packetKey;
@@ -39,7 +39,7 @@ if (isNil "ahSetupDone") then
 	//MD- ???? Need to test what the fuck this does ???
 	_assignPacketKey = _assignPacketKey + (str toArray _packetKeyArray) + "; ";
 	
-	//MD- Repeat the above process
+	//MD- Repeat the above process for _flagChecksum
 	_checksum = call generateKey;
 	
 	_assignChecksum = "";
@@ -54,7 +54,8 @@ if (isNil "ahSetupDone") then
 	} forEach toArray _checksum;
 	_assignChecksum = _assignChecksum + (str toArray _checksumArray) + "; ";
 
-		
+	
+
 	A3W_network_compileFuncs = compile ("['" + _assignChecksum + "','" + _assignPacketKey + "'] call compile preprocessFileLineNumbers 'server\antihack\compileFuncs.sqf'");
 	_networkCompile = [] spawn A3W_network_compileFuncs;
 	publicVariable "A3W_network_compileFuncs";
