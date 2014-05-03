@@ -1,17 +1,15 @@
-*Wasteland.Altis* by Team Wasteland!
-===================
+This is a copy of A3Wasteland (https://github.com/A3Wasteland/ArmA3_Wasteland.Altis)
 
-ArmA 3 Wasteland is a harsh survival sandbox mission where 2 teams and independent players fight for survival.
+Currently at commit:64dc6d13cc4f133d272759d9ed9ea9db1cd10456
+
+In order to learn more about Arma 3 scripting in general I'll be heavily commenting the code
+as I follow it through. I've added links to the relevent BI wiki pages where I hit a command or
+feature that I've not known so it should be easy to reference stuff as a scripting newbie.
+
+I've added a file to the root directory called orderofexe.txt that shows (as far I can currently discern)
+the structure of the mod in relation to the order in which scripts are referenced. This is probably as good 
+a place as any to start.
+
+I can be contacted on the ZombieSkelper.com forum (theirongiant).
 
 
-The mission is not ready yet, so for now it's just a placeholder :)
-
-
-*Team Wasteland* collaborators:
-
-       GoT - JoSchaap
-       TPG - AgentRev
-           - MercyfulFate
-       KoS - His_Shadow
-       KoS - Bewilderbeest
-       404 - Del1te
