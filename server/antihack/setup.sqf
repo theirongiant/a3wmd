@@ -42,7 +42,7 @@ if (isNil "ahSetupDone") then
 	//MD- https://community.bistudio.com/wiki/str - converts variable into a string
 	//MD- to clarify, on an array([1,2]) it will return "[1,2]" rather than "12"
 	//MD- After some testing _assignPacketKey is: private "_mpPacketKey"; call compile toString [23,54,106,102,104....]
-	//MD- When the call line is run the array will toString to _mpPacketKey = "a"+"3"+"5"+"g"....
+	//MD- When the call line is run the array will toString back to _mpPacketKey = "a"+"3"+"5"+"g"....
 	_assignPacketKey = _assignPacketKey + (str toArray _packetKeyArray) + "; ";
 	
 	//MD- Repeat the above process for _flagChecksum
@@ -62,9 +62,13 @@ if (isNil "ahSetupDone") then
 
 	
 	//MD- These two strings are then sent to compileFuncs as parameters
+	//MD- when A3W_network_compileFuncs is called.
 	A3W_network_compileFuncs = compile ("['" + _assignChecksum + "','" + _assignPacketKey + "'] call compile preprocessFileLineNumbers 'server\antihack\compileFuncs.sqf'");
+	//MD- run it now
 	_networkCompile = [] spawn A3W_network_compileFuncs;
+	//MD- Send it to  all clients (need some testing to see how this works)
 	publicVariable "A3W_network_compileFuncs";
+	//MD- Wait till completion
 	waitUntil {sleep 0.1; scriptDone _networkCompile};
 	
 	"A3W_network_compileFuncs" addPublicVariableEventHandler { _this set [1, A3W_network_compileFuncs] };
