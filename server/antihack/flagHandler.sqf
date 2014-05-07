@@ -1,3 +1,7 @@
+//MD- Proceeded with _flagChecksum declaration and initialisation
+//MD- when compileFinal'd from antihack/compileFuncs
+
+//MD- Ignoring for now until I get example of a call.
 
 //	@file Version: 1.0
 //	@file Name: flagHandler.sqf

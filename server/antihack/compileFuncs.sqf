@@ -16,15 +16,23 @@ _assignChecksum = [_this, 0, "", [""]] call BIS_fnc_param;
 _assignPacketKey = [_this, 1, "", [""]] call BIS_fnc_param;
 
 //MD- Still not getting this - why would be this nil here?
+//MD- fuck it, going to proceed on the assumption that this somehow returns true
+//MD- until i can get this running locally and can poke it with a stick
 if (call compile (_assignChecksum + "isNil _flagChecksum")) then
 {
+	//MD- Ignoring these for now until I get an example of a call made with them
 	TPG_fnc_MPexec = compileFinal (_assignPacketKey + (preprocessFileLineNumbers "server\functions\network\fn_MPexec.sqf"));
+
+	//MD- First instance of a call to this function is from antihack/serverSide.sqf when it detects a filthy cheat
+	//MD- passing in these params: [ [UID, _flagChecksum], "clientFlagHandler", player object, false] ]
 	TPG_fnc_MP = compileFinal (_assignPacketKey + (preprocessFileLineNumbers "server\functions\network\fn_MP.sqf"));
 	//call compile (_assignPacketKey + (preprocessFileLineNumbers "server\functions\network\fn_initMultiplayer.sqf"));
 	
 	if (isServer) then
 	{
+		//MD- Wait for call example
 		flagHandler = compileFinal (_assignChecksum + (preprocessFileLineNumbers "server\antihack\flagHandler.sqf"));
+		//MD- Compile and call serverSide 
 		[] spawn compile (_assignChecksum + (preprocessFileLineNumbers "server\antihack\serverSide.sqf"));
 	};
 	

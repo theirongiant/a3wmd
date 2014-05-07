@@ -3,6 +3,8 @@
 //	@file Author: AgentRev
 //	@file Created: 09/06/2013 16:39
 
+//MD- Returns player object for a given id
+
 private ["_clientID", "_player"];
 _clientID = _this select 0;
 _player = objNull;

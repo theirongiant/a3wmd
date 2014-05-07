@@ -1,0 +1,872 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"lo",
+				"loading-dialog"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"get",
+				"get_groups"
+			],
+			[
+				"vehicle",
+				"_vehicleList"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "orderofexe.txt",
+			"settings":
+			{
+				"buffer_size": 10251,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "init.sqf",
+			"settings":
+			{
+				"buffer_size": 3247,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/init.sqf",
+			"settings":
+			{
+				"buffer_size": 7673,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/antihack/setup.sqf",
+			"settings":
+			{
+				"buffer_size": 3722,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/antihack/compileFuncs.sqf",
+			"settings":
+			{
+				"buffer_size": 2699,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/functions/network/fn_MP.sqf",
+			"settings":
+			{
+				"buffer_size": 3516,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/functions/network/fn_MPexec.sqf",
+			"settings":
+			{
+				"buffer_size": 5953,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/antihack/serverSide.sqf",
+			"settings":
+			{
+				"buffer_size": 4477,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/functions/findClientPlayer.sqf",
+			"settings":
+			{
+				"buffer_size": 342,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 306.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: l",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MPexec.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MP.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/flagHandler.sqf",
+		"/home/markd/arma/arma3/duws/orderofexe.txt",
+		"/home/markd/arma/arma3/duws/description.ext",
+		"/home/markd/arma/arma3/duws/INIT.sqf",
+		"/home/markd/arma/arma3/duws/debriefing.hpp",
+		"/home/markd/arma/arma3/duws/persistent/experience/experience_init.sqf",
+		"/home/markd/arma/arma3/duws/persistent/experience/experience_ability_check.sqf",
+		"/home/markd/iomart/ControlPanel2/cfcomponents/domain/dns.cfc",
+		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/domain/dns.cfm",
+		"/home/markd/iomart/ControlPanel2/multibrand/controllers/index.cfm",
+		"/home/markd/arma/arma3/duws/persistent/persistent_stats_init.sqf",
+		"/home/markd/arma/arma3/duws/WARCOM/WARCOM_wp_opf_qrf.sqf",
+		"/home/markd/arma/arma3/duws/dialog/hc_init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/setup.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/compileFuncs.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/clientFlagHandler.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/filterExecAttempt.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/serverSide.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/serverCompile.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/network/generateKey.sqf",
+		"/home/markd/arma/arma3/WastelandMD/README.md",
+		"/home/markd/arma/arma3/WastelandMD/orderofexe.txt",
+		"/home/markd/arma/arma3/WastelandMD/w3ooa.txt",
+		"/home/markd/arma/arma3/WastelandMD/server/default_config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/objectsSpawning.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/spawning/objectCreation.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/functions/defineServerRules.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/functions/clientCompile.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/items/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/items/beacon/toggle_spawn_permissions.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/inventory/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/functions/bannedNames.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/spawning/vehicleCreation.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/missions/factoryMethods/deleteClientMarker.sqf",
+		"/home/markd/arma/arma3/scripting.txt",
+		"/home/markd/arma/arma3/WastelandMD/globalCompile.sqf",
+		"/home/markd/arma/arma3/WastelandMD/description.ext",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_findString.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/serverVars.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/cargoToPairs.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/detachTowedObject.sqf",
+		"/home/markd/arma/arma3/WastelandNotes/init.sqf",
+		"/home/markd/arma/arma3/WastelandNotes/description.ext",
+		"/home/markd/arma/arma3/ArmA3_Wasteland.Altis/init.sqf",
+		"/home/markd/iomart/ControlPanel2/multibrand/views/branded/titan/domain_management/hosting/list.cfm",
+		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/hosting/list.cfm",
+		"/home/markd/iomart/ControlPanel2/cfcomponents/account/main.cfc",
+		"/home/markd/java/reseller/ResellerAPI/includes/literals.inc.php",
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/init.sqf",
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/jump.sqf",
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/admincontrols.sqf",
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/server/antihack/setup.sqf",
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/scripts/hud.sqf",
+		"/home/markd/java/reseller/ResellerAPI/includes/common.inc.php",
+		"/home/markd/upgradediffs.txt",
+		"/home/markd/java/IHCP/src/java/com/iomart/ihcp/helpers/APICall2.java",
+		"/home/markd/res/blue-moon-ccp/index.html",
+		"/home/markd/res/blue-moon-ccp/businessmail.html",
+		"/home/markd/res/blue-moon-ccp/businessmail-settings.html",
+		"/home/markd/res/blue-moon-ccp/tables.html",
+		"/home/markd/res/blue-moon-ccp/css/bootstrap-editable.css",
+		"/home/markd/res/blue-moon-ccp/css/main.css",
+		"/home/markd/res/blue-moon-ccp/css/wysiwyg/wysiwyg-color.css",
+		"/home/markd/res/blue-moon-ccp/css/style.css",
+		"/home/markd/res/blue-moon-ccp/css/wysiwyg/bootstrap-wysihtml5.css",
+		"/home/markd/res/blue-moon-ccp/css/charts-graphs.css",
+		"/home/markd/res/blue-moonV1.0.2/index.html",
+		"/home/markd/Documents/test.js",
+		"/home/markd/rails/crm_cvs/app/controllers/ihinvdev_controller.rb",
+		"/home/markd/java/IHCP/web/WEB-INF/pages/desktop3.jsp",
+		"/home/markd/java/IHCP/web/js/desktop4.js",
+		"/home/markd/java/IHCP/web/css/style.css",
+		"/home/markd/java/IHCP/web/css/light/theme.css",
+		"/home/markd/java/IHCP/web/css/dark/theme.css",
+		"/home/markd/java/IHCP/web/js/wl_multiselect.js",
+		"/home/markd/java/CCP/web/js/wl_multiselect.js",
+		"/home/markd/Documents/zs_stuff.txt",
+		"/home/markd/Documents/dotcos.csv",
+		"/run/user/1000/gvfs/smb-share:server=gladc3,share=shared/Dev/Sitebuilder/ESL/BoxVersion2/BX.0.0.1/Rapidsite/FTP/FTP2.vb",
+		"/run/user/1000/gvfs/smb-share:server=gladc3,share=shared/Dev/Sitebuilder/ESL/BoxVersion2/BX.0.0.1/Rapidsite/GeneralSettings/GeneralSettings.vb",
+		"/home/markd/java/IHCP/web/WEB-INF/pages/jspf/header.jspf",
+		"/home/markd/iomart/ControlPanel2/multibrand/views/branded/switchmedia/domain_management/email/switchmail/main.cfm",
+		"/home/markd/iomart/ControlPanel2/cfcomponents/email/email.cfc",
+		"/home/markd/iomart/ControlPanel2/cfcomponents/email/switchmail.cfc",
+		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/email/switchmail/overview.cfm",
+		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/email/main.cfm",
+		"/run/user/1000/gvfs/smb-share:server=gladc3,share=shared/Customer Services/John Coyne/chiandpartners1.csv",
+		"/home/markd/Desktop/TASKLIST",
+		"/home/markd/java/IHCP/web/js/general.js",
+		"/home/markd/java/IHCP/web/js/compiled.js",
+		"/home/markd/java/CCP/.gitignore",
+		"/home/markd/java/IHCP/web/js/dr.js",
+		"/home/markd/java/IHCP/web/js/bk_admin.js",
+		"/home/markd/java/IHCP/web/js/desktop3.js",
+		"/home/markd/lua/flags.lua",
+		"/home/markd/lua/flagzone.lua",
+		"/home/markd/lua/cor.zones.lua",
+		"/home/markd/res/parallax/parallax.js",
+		"/home/markd/res/parallax/far.js",
+		"/home/markd/iomart/ControlPanel_newlook/cfcomponents/zone/PendingZoneManager.cfc",
+		"/home/markd/iomart/ControlPanel2/cfcomponents/zone/PendingZoneManager.cfc",
+		"/home/markd/res/parallax/index.html",
+		"/home/markd/res/pixi.js-master/examples/example 1 - Basics/index.html",
+		"/home/markd/Temp/dr_logs/Program Files/Cristie/CBMR/Logfiles/RecoveryAgentService.log",
+		"/home/markd/java/reseller/ResellerAPI/index.php",
+		"/home/markd/java/reseller/ResellerAPI/api_testing.php",
+		"/home/markd/Desktop/WORKLIST.txt",
+		"/home/markd/iomart/easynic2/com/iomart/reseller_interface/includes/domain_tool_main.cfm",
+		"/home/markd/Downloads/phpbb_users.csv",
+		"/home/markd/Temp/bb_code_edit.js",
+		"/home/markd/res/xenforo/js/xenforo/bb_code_edit.js",
+		"/home/markd/res/xenforo/library/XenForo/Helper/String.php",
+		"/home/markd/res/xenforo/library/XenForo/Helper/Url.php",
+		"/home/markd/res/xenforo/library/XenForo/BbCode/Formatter/Base.php",
+		"/home/markd/res/xenforo/library/XenForo/BbCode/Formatter/BbCode/AutoLink.php",
+		"/home/markd/res/xenforo/js/redactor/redactor.js",
+		"/home/markd/res/xenforo/install/templates/PAGE_CONTAINER.php",
+		"/home/markd/res/xenforo/install/data/templates.xml",
+		"/home/markd/res/xenforo/install/data/admin_templates.xml",
+		"/home/markd/res/xenforo/install/data/email_templates.xml",
+		"/home/markd/res/xenforo/library/XenForo/Debug.php",
+		"/home/markd/res/xenforo/js/xenforo/xenforo.js",
+		"/home/markd/php/squirrel/quarantine/src/login.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"",
+			"*.java",
+			"",
+			"/home/markd/java/IHCP",
+			"/home/markd/iomart/ControlPanel2",
+			"/home/markd/iomart",
+			"/home/markd/java/IHCP/web/css",
+			"/home/markd/java/IHCP/web/js",
+			"",
+			"*.php",
+			"",
+			"/home/markd/iomart",
+			"",
+			"/home/markd/iomart/ioprovision/Provision",
+			"/home/markd/iomart",
+			"*",
+			"*.js",
+			"*.rb",
+			"**",
+			"*.java",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"findClientPlayer",
+			"BIS_fnc_MP_packet",
+			"bis_functions_mainscope",
+			"TPG_fnc_MPexec",
+			"evaluate",
+			"managedns",
+			"Warning - only use these tools",
+			"TPG_fnc_MP",
+			"TPG_fnc_MPexec",
+			"clientFlagHandler",
+			"_networkCompile",
+			"A3W_network_compileFuncs",
+			"compileFuncs.sqf",
+			"release",
+			"A3W_baseBuilding",
+			"globalCom",
+			"\\",
+			"initPlayerServer.sqf",
+			"initPayerServer.sqf",
+			"\\",
+			"fn_MP",
+			"TPG_fnc_MP",
+			"removeNegativeScore",
+			"requestCompensateNegativeScore",
+			"fn_MPExec",
+			"BIS_fnc_execVM",
+			"generateKey",
+			"AW3",
+			"globalCompile",
+			"generateKey",
+			"A3W_network_compileFuncs",
+			"getaaauseridfordomain",
+			"retrieveservices",
+			"filterservices",
+			"hostingservices",
+			"Any service within 60",
+			"valueForBinding",
+			"timeout",
+			"mailbox",
+			"#3693cf",
+			"#3693cf;",
+			"#3187bf;",
+			" class=\"hidden-phone\"",
+			"left-sidebar",
+			"left-sider",
+			"themes",
+			"passive",
+			"ini",
+			"groups",
+			"add-group",
+			"multi",
+			"lodash",
+			"theme",
+			"aliases",
+			"getGeneralDetails_switchmail",
+			"emailobj.mailboxaliases",
+			"Deliver to mailbox",
+			"simple",
+			"ftpcfg",
+			"micon",
+			"validate_form",
+			"wl_Valid",
+			"function wl_Valid",
+			"apply_form_function",
+			"apply",
+			"fix_place",
+			"valid",
+			"\"",
+			"init",
+			"cmdTriggerPoller",
+			"plugin:on",
+			"response_error",
+			"&& false",
+			"please wait",
+			":AddCommand",
+			":addcommand",
+			":replywith",
+			"reloadflags",
+			"api.Bind",
+			"api.bind",
+			"Reloadflags",
+			"api.call",
+			"api.Bind",
+			"deletebyzonename",
+			");",
+			"new Smarty",
+			"Smarty",
+			"Smarty()",
+			"new Smarty()",
+			"$smarty = new Smarty()",
+			"include_path",
+			"Smarty.class.php",
+			"smarty",
+			"$smarty->template_dir",
+			"JDBC",
+			"10.",
+			"odbc",
+			"mysql_",
+			" domaincfgid_to_maildomainid",
+			"Show domains in account where username like",
+			"\"",
+			"steam",
+			"https?",
+			"ftp:",
+			"ftp",
+			"http",
+			"getValidUrl",
+			"link",
+			"execRun",
+			"modal_link",
+			"redactor_modal",
+			"linkify",
+			"meta charset",
+			"tooltip",
+			"$.browser",
+			"$.tools",
+			"linkify",
+			"ttp",
+			"tt",
+			"http",
+			"ftp",
+			"https?://|ftp://|www",
+			"externalLink",
+			"redactor_btn_container_createlink",
+			"redactor_link_url",
+			"protocol",
+			"redactor",
+			"redactor.js"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"/",
+			"#eb5a32",
+			"#eb5a32;",
+			"",
+			"'",
+			"",
+			"\\n",
+			"",
+			"/",
+			"indent.png",
+			"/",
+			"/javascript",
+			"/images",
+			"redloader",
+			"Redloader",
+			"redloader",
+			"redactor",
+			"Redactor",
+			"Redload",
+			"redload",
+			"url(/admin/images",
+			"Article.",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "orderofexe.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "init.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3247,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "server/init.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7673,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								608,
+								608
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 39.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server/antihack/setup.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3722,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3339,
+								3339
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 585.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server/antihack/compileFuncs.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2699,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1437,
+								1437
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "server/functions/network/fn_MP.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2001,
+								2001
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 273.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "server/functions/network/fn_MPexec.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5953,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2631,
+								2631
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 468.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "server/antihack/serverSide.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4477,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4076,
+								4076
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1053.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server/functions/findClientPlayer.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 475.0
+	},
+	"project": "a3wmd.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"autodn",
+				"iomart/ioprov2/crm/autodns.pl"
+			],
+			[
+				"bk_jsp",
+				"IHCP/web/WEB-INF/pages/bk_home.jsp"
+			],
+			[
+				"dr.",
+				"IHCP/web/js/dr.js"
+			],
+			[
+				"desktop3",
+				"IHCP/web/js/desktop3.js"
+			],
+			[
+				"dr",
+				"IHCP/build/web/js/dr.js"
+			],
+			[
+				"cfgveh",
+				"SQF/dayz_code/Configs/cfgVehicles.hpp"
+			],
+			[
+				"object_geth",
+				"SQF/dayz_code/compile/object_getHit.sqf"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 335.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
