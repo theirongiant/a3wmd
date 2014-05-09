@@ -1,0 +1,78 @@
+Comparison of execution methods
+
+call, execVM, execFSM, exec, compile, preprocessFileLineNumbers, preprocessFile, spawn, terminate, scriptDone
+
+Discussion on scheduled vs unscheduled environment: http://killzonekid.com/arma-scripting-tutorials-code-performance/
+
+Non-scheduled - high priority, waits for execution to complete not allowed to sleep or wait, any while loop will exit after 10,000 rounds
+Scheduled - execution doesn't wait on completion
+
+CALL
+----
+https://community.bistudio.com/wiki/call
+
+Description:
+	Executes the function string. The argument(s) (if any) are passed as _this. (argument(s) are passed in an array). 
+	To execute a sleep function in the called code, execute it with spawn instead.
+
+Syntax:
+	argument(s) call body
+
+	argument(s): Any Value - Optional. Argument that is passed to the function in the "_this" variable.
+	body: Code - A function body provided directly 'inline' or the String returned from the commands loadFile or preprocessFile.
+
+Returns:
+	Anything - The last value given in the function is returned. See the topic Function for more information.
+
+
+EXECVM
+------	
+Description:
+	Compile and execute SQF Script. 
+	The optional argument is passed to the script as local variable _this. 
+	Script is compiled every time you use this command. 
+	The Script is first searched for in the mission folder, then in the campaign scripts folder and finally in the global scripts folder
+
+Syntax:
+	argument(s) execVM filename
+
+	argument(s): Any Value(s) - Optional. Argument(s) accessible as _this in the script
+	filename: String
+
+Returns:
+	Script - script handle, which can be used to determine (via scriptDone) when the spawned script has finished.
+
+
+SPAWN
+-----
+Description:
+	Starts running a new script (SQF). Additional arguments are passed in local _this variable. 
+	The new script is running in scheduled environment, spawn does not wait for it to be done, instead spawn returns a Script handle.	
+
+Syntax: 
+		Script = arguments spawn code
+
+		arguments: Any Value
+		code: Code
+
+Returns:
+	Script		
+
+
+
+	Explanation from bi forums: http://forums.bistudio.com/showthread.php?177359-Question-about-function-basics
+
+	1. execVM - Will read in the script file then compile and then execute it line by line. Script's return value is a handle which for example can be 
+	used like this: "waitUntil {scriptDone _handle}" or "terminate _handle".
+
+2. call - Needs the script to be preprocessed / compiled already. Executes the code and waits until it's done. Returns a value instead of a handle. 
+When the code contains sleeps or waitUntils it must be executed within a scheduled environment. (Correct me when I'm wrong.)
+
+3. spawn - Also needs the script to be preprocessed / compiled already. Executes the code like with execVM and returns a handle which can be used 
+like described above.
+
+The decision call vs. spawn/execVM is in my opinion dependant on in which environment you want to run it. Run a script containing sleep or waitUntil 
+from a trigger or init line? Use spawn or execVM as it's not scheduled and won't wait until the script is done. Executing a function within a script 
+(that may be executed by spawn or execVM) to calculate some value? Use call because you would want to have the result returned. Furthermore, I read 
+somewhere spawn and execVM open new threads while call functions within the thread from where it is executed. Please, someone with better knowledge 
+may correct me.

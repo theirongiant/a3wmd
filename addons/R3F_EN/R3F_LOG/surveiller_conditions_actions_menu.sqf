@@ -20,8 +20,8 @@ private ["_objet_pointe", "_resetConditions"];
 //MD- deplace = moveable
 //MD- contenu = contents
 //MD- remorquer = tow
-//MD- heliporter = lift?
-//MD- larguer = drop
+//MD- helicopter = lift?
+//MD- drop = drop
 
 
 _resetConditions = 
@@ -32,8 +32,8 @@ _resetConditions =
 	R3F_LOG_action_remorquer_deplace_valide = false;
 	R3F_LOG_action_remorquer_selection_valide = false;
 	R3F_LOG_action_selectionner_objet_remorque_valide = false;
-	R3F_LOG_action_heliporter_valide = false;
-	R3F_LOG_action_heliport_larguer_valide = false;
+	R3F_LOG_action_helicopter_valide = false;
+	R3F_LOG_action_heliport_drop_valide = false;
 };
 
 while {true} do
@@ -65,13 +65,13 @@ while {true} do
 			//MD- it rips through the array performing the chunk of code for each object
 			//MD- any time the code evaluates to true count is incremented
 			//MD- so this if looks through the list of moveable to find a match for our object
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
+			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_moveable_objects > 0) then
 			{
 				// Condition action deplacer_objet
 				//MD- MOVE OBJECT VALID
 				R3F_LOG_action_deplacer_objet_valide = (vehicle player == player && //MD- Player isn't in vehicle AND
 					(count crew _objet_pointe == 0) &&  //MD- Object doesn't have a crew AND
-					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Object player is moving is null AND
+					(isNull R3F_LOG_player_target_object) && //MD- Object player is moving is null AND
 					(
 						isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") ||  //MD- player that is moving object is null OR
 						(!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par")) //MD- player that is moving object is dead
@@ -82,16 +82,16 @@ while {true} do
 			
 			// Si l'objet est un objet remorquable
 			// GT: If the object is a towable object
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) then
+			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_towable_objects > 0) then
 			{
 				// Et qu'il est déplaçable
 				//MD- and it is moveable
-				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
+				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_moveable_objects > 0) then
 				{
 					// Condition action remorquer_deplace 
 					//MD- TOWER VALID
 					R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && //MD- Player isn't in a vehicle AND
-						(alive R3F_LOG_joueur_deplace_objet) && //MD- object being moved is alive AND
+						(alive R3F_LOG_player_target_object) && //MD- object being moved is alive AND
 						(
 							isNull driver _objet_pointe ||  //MD- the object doesn't have a driver OR
 							{
@@ -101,7 +101,7 @@ while {true} do
 								}
 							}
 						) && //MD- And
-						(R3F_LOG_joueur_deplace_objet == _objet_pointe) && //MD- Object player is moving is this object AND
+						(R3F_LOG_player_target_object == _objet_pointe) && //MD- Object player is moving is this object AND
 						(
 							{ //MD- loop over towable objects within 18m
 								_x != _objet_pointe && //MD- towable isn't this object
@@ -112,7 +112,7 @@ while {true} do
 								) && 
 								(getPos _x select 2 < 2) && //MD- less that 2m away
 								!(_x getVariable "R3F_LOG_disabled") //MD- towable isn't disabled
-							} count (nearestObjects [_objet_pointe, R3F_LOG_CFG_remorqueurs, 18]) //MD- [object, types,radius]
+							} count (nearestObjects [_objet_pointe, R3F_LOG_CFG_towers, 18]) //MD- [object, types,radius]
 						) > 0 &&
 						!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- our object isn't disabld
 				};
@@ -125,7 +125,7 @@ while {true} do
 						isNull driver _objet_pointe || 
 						{!isPlayer driver _objet_pointe && {getText (configFile >> "CfgVehicles" >> typeOf driver _objet_pointe >> "simulation") == "UAVPilot"}}
 					) && //MD- object doens't have a driver
-					isNull R3F_LOG_joueur_deplace_objet && //MD- player isn't moving an object already
+					isNull R3F_LOG_player_target_object && //MD- player isn't moving an object already
 					isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") && //MD- object isn't currently being trnsported
 					(
 						isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") || 
@@ -135,7 +135,7 @@ while {true} do
 				// Condition action detacher
 				//MD- DETACH_VALID
 				R3F_LOG_action_detacher_valide = (vehicle player == player && //MD- Player isn't in vehicle
-					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Player isn't already moving an object
+					(isNull R3F_LOG_player_target_object) && //MD- Player isn't already moving an object
 					!isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") && //MD- Object is being transported by something
 					!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- Object isn't disabled
 			}; //MD- End of towable 
@@ -144,89 +144,65 @@ while {true} do
 			
 			// Si l'objet est un objet transportable
 			// GT: If the object is a transportable object
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) then
+			if ({_objet_pointe isKindOf _x} count R3F_LOG_transportable_object_classes > 0) then
 			{
 				//MD0 And is moveable
-				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
+				if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_moveable_objects > 0) then
 				{
 					// Condition action charger_deplace
 					//MD- ACTION LOAD VALID
 					R3F_LOG_action_charger_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle
 						(count crew _objet_pointe == 0) &&  //MD- target object doesn't have any crew
-						(R3F_LOG_joueur_deplace_objet == _objet_pointe) && // this is object player is moving
-						{ //MD- Loop round all transport classes within 18m
-							_x != _objet_pointe && //MD- object isn't a transporter
-							alive _x && //MD- it's alive
-							((velocity _x) call BIS_fnc_magnitude < 6) && //MD- it's velocity is below 6 ?
-							(getPos _x select 2 < 2) && //MD- it's less that 2m off the ground
-							!(_x getVariable "R3F_LOG_disabled") //MD- it's not disabled
-						} count (nearestObjects [_objet_pointe, R3F_LOG_classes_transporteurs, 18]) > 0 &&
-						!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- target object isn't disabled
+						(R3F_LOG_player_target_object == _objet_pointe) && // this is object playere is moving
+						{_x != _objet_pointe && alive _x && ((velocity _x) call BIS_fnc_magnitude < 6) && (getPos _x select 2 < 2) &&
+						!(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [_objet_pointe, R3F_LOG_transport_classes, 18]) > 0 &&
+						!(_objet_pointe getVariable "R3F_LOG_disabled"));
 				};
 				
 				// Condition action selectionner_objet_charge
-				// GT: Action select object loads
-				R3F_LOG_action_selectionner_objet_charge_valide = (vehicle player == player && //MD- player isn't in vehicle
-					(count crew _objet_pointe == 0) && //MD- target object doesn't have crew
-					isNull R3F_LOG_joueur_deplace_objet &&  //MD- player not moving an object
-					isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") && //MD- target object isn't being transported
-					(
-						isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") || //MD- target object mover is null OR
-						(!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par"))  //MD- target object mover is dead
-					) &&
-					!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- target object isn't disabled
+				R3F_LOG_action_selectionner_objet_charge_valide = (vehicle player == player && (count crew _objet_pointe == 0) &&
+					isNull R3F_LOG_player_target_object && isNull (_objet_pointe getVariable "R3F_LOG_est_transporte_par") &&
+					(isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") || (!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par"))) &&
+					!(_objet_pointe getVariable "R3F_LOG_disabled"));
 			};
 			
-			// Si l'objet est un véhicule remorqueur
-			// GT: If the object is a towing vehicle
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
+			// Si l'objet est un véhicule tower
+			if ({_objet_pointe isKindOf _x} count R3F_LOG_CFG_towers > 0) then
 			{
-				// Condition action remorquer_deplace 
-				// GT: Condition action tow moves ??
-				R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle
-					(alive _objet_pointe) && //MD- target object is alive
-					(!isNull R3F_LOG_joueur_deplace_objet) && //MD- player IS moving an object
-					(alive R3F_LOG_joueur_deplace_objet) && //MD- the object the player is moving is alive ?
-					!(R3F_LOG_joueur_deplace_objet getVariable "R3F_LOG_disabled") && //MD- players object isn't disabled
-					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) && //MD- players object is a towable
-					isNull (_objet_pointe getVariable "R3F_LOG_remorque") && //MD- target object isn't being towed?
-					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && //MD- target object isn't moving much
-					(getPos _objet_pointe select 2 < 2) &&  //MD- target objeect is less than 2m off the ground
-					!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- target object isn't disabled
+				// Condition action remorquer_deplace
+				R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && (alive _objet_pointe) && (!isNull R3F_LOG_player_target_object) &&
+					(alive R3F_LOG_player_target_object) && !(R3F_LOG_player_target_object getVariable "R3F_LOG_disabled") &&
+					({R3F_LOG_player_target_object isKindOf _x} count R3F_LOG_CFG_towable_objects > 0) &&
+					isNull (_objet_pointe getVariable "R3F_LOG_remorque") && ((velocity _objet_pointe) call BIS_fnc_magnitude < 6) &&
+					(getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 				
 				// Condition action remorquer_selection
-				// Condition action tow selection valid
-				R3F_LOG_action_remorquer_selection_valide = (vehicle player == player && //MD- Player isn't in vehicle
-					(alive _objet_pointe) && //MD- target object is alive
-					(isNull R3F_LOG_joueur_deplace_objet) && //MD- player isn't already moving an object
-					(!isNull R3F_LOG_objet_selectionne) &&  //MD- selected object isn't null
-					(R3F_LOG_objet_selectionne != _objet_pointe) && //MD- selected object isn't the target object
-					!(R3F_LOG_objet_selectionne getVariable "R3F_LOG_disabled") && //MD- selected object isn't disabled
-					({R3F_LOG_objet_selectionne isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) && //MD- selected object is a towable
-					isNull (_objet_pointe getVariable "R3F_LOG_remorque") &&  //MD- object isn't towing anything ?
-					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && //MD- target object isn't moving faster than 6 
-					(getPos _objet_pointe select 2 < 2) &&  //MD- target object is less that 2 off the ground
-					!(_objet_pointe getVariable "R3F_LOG_disabled")); //MD- target object isn't disabled.
+				R3F_LOG_action_remorquer_selection_valide = (vehicle player == player && (alive _objet_pointe) && (isNull R3F_LOG_player_target_object) &&
+					(!isNull R3F_LOG_selected_object) && (R3F_LOG_selected_object != _objet_pointe) &&
+					!(R3F_LOG_selected_object getVariable "R3F_LOG_disabled") &&
+					({R3F_LOG_selected_object isKindOf _x} count R3F_LOG_CFG_towable_objects > 0) &&
+					isNull (_objet_pointe getVariable "R3F_LOG_remorque") && ((velocity _objet_pointe) call BIS_fnc_magnitude < 6) &&
+					(getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 			};
 			
-			// Si l'objet est un véhicule transporteur
-			if ({_objet_pointe isKindOf _x} count R3F_LOG_classes_transporteurs > 0) then
+			// Si l'objet est un véhicule transporter
+			if ({_objet_pointe isKindOf _x} count R3F_LOG_transport_classes > 0) then
 			{
 				// Condition action charger_deplace
-				R3F_LOG_action_charger_deplace_valide = (alive _objet_pointe && (vehicle player == player) && (!isNull R3F_LOG_joueur_deplace_objet) &&
-					!(R3F_LOG_joueur_deplace_objet getVariable "R3F_LOG_disabled") &&
-					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) &&
+				R3F_LOG_action_charger_deplace_valide = (alive _objet_pointe && (vehicle player == player) && (!isNull R3F_LOG_player_target_object) &&
+					!(R3F_LOG_player_target_object getVariable "R3F_LOG_disabled") &&
+					({R3F_LOG_player_target_object isKindOf _x} count R3F_LOG_transportable_object_classes > 0) &&
 					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && (getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 				
 				// Condition action charger_selection
-				R3F_LOG_action_charger_selection_valide = (alive _objet_pointe && (vehicle player == player) && (isNull R3F_LOG_joueur_deplace_objet) &&
-					(!isNull R3F_LOG_objet_selectionne) && (R3F_LOG_objet_selectionne != _objet_pointe) &&
-					!(R3F_LOG_objet_selectionne getVariable "R3F_LOG_disabled") &&
-					({R3F_LOG_objet_selectionne isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) &&
+				R3F_LOG_action_charger_selection_valide = (alive _objet_pointe && (vehicle player == player) && (isNull R3F_LOG_player_target_object) &&
+					(!isNull R3F_LOG_selected_object) && (R3F_LOG_selected_object != _objet_pointe) &&
+					!(R3F_LOG_selected_object getVariable "R3F_LOG_disabled") &&
+					({R3F_LOG_selected_object isKindOf _x} count R3F_LOG_transportable_object_classes > 0) &&
 					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && (getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 				
 				// Condition action contenu_vehicule
-				R3F_LOG_action_contenu_vehicule_valide = (alive _objet_pointe && (vehicle player == player) && (isNull R3F_LOG_joueur_deplace_objet) &&
+				R3F_LOG_action_contenu_vehicule_valide = (alive _objet_pointe && (vehicle player == player) && (isNull R3F_LOG_player_target_object) &&
 					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && (getPos _objet_pointe select 2 < 2) && !(_objet_pointe getVariable "R3F_LOG_disabled"));
 			};
 		};
@@ -238,21 +214,21 @@ while {true} do
 	
 	// Pour l'héliportation, l'objet n'est plus pointé, mais on est dedans
 	// Si le joueur est dans un héliporteur
-	if ({(vehicle player) isKindOf _x} count R3F_LOG_CFG_heliporteurs > 0) then
+	if ({(vehicle player) isKindOf _x} count R3F_LOG_CFG_helicopters > 0) then
 	{
 		R3F_LOG_objet_addAction = vehicle player;
 		
-		// On est dans le véhicule, on affiche pas les options de transporteur et remorqueur
+		// On est dans le véhicule, on affiche pas les options de transporter et tower
 		call _resetConditions;
 		
-		// Condition action heliporter
-		R3F_LOG_action_heliporter_valide = (driver R3F_LOG_objet_addAction == player &&
-			({_x != R3F_LOG_objet_addAction && !(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [R3F_LOG_objet_addAction, R3F_LOG_CFG_objets_heliportables, 15]) > 0) &&
-			isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") && ((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 6) && (getPos R3F_LOG_objet_addAction select 2 > 1) &&
+		// Condition action helicopter
+		R3F_LOG_action_helicopter_valide = (driver R3F_LOG_objet_addAction == player &&
+			({_x != R3F_LOG_objet_addAction && !(_x getVariable "R3F_LOG_disabled")} count (nearestObjects [R3F_LOG_objet_addAction, R3F_LOG_CFG_liftable_objects, 15]) > 0) &&
+			isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_helicopter") && ((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 6) && (getPos R3F_LOG_objet_addAction select 2 > 1) &&
 			!(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 		
-		// Condition action heliport_larguer
-		R3F_LOG_action_heliport_larguer_valide = (driver R3F_LOG_objet_addAction == player && !isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") &&
+		// Condition action heliport_drop
+		R3F_LOG_action_heliport_drop_valide = (driver R3F_LOG_objet_addAction == player && !isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_helicopter") &&
 			/*((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) && */ !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 	};
 	

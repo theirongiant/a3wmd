@@ -26,9 +26,9 @@ if (isServer) then
 	// GT: It creates the point of attachment to serve the AttachTo for loading objects virtually in vehicles
 	//MD- https://community.bistudio.com/wiki/createVehicle
 	//MD- create a (invisible) helipoint at 0,0,0
-	R3F_LOG_PUBVAR_point_attache = "Land_HelipadEmpty_F" createVehicle [0,0,0];
+	R3F_LOG_PUBVAR_attach_point = "Land_HelipadEmpty_F" createVehicle [0,0,0];
 	//MD- Broadcast that shit all over the shop like a boss
-	publicVariable "R3F_LOG_PUBVAR_point_attache";
+	publicVariable "R3F_LOG_PUBVAR_attach_point";
 };
 
 // Un serveur dédié n'en a pas besoin
@@ -38,48 +38,48 @@ if !(isServer && isDedicated) then
 	// Le client attend que le serveur ai créé et publié la référence de l'objet servant de point d'attache
 	// GT: The client waits for the server I created and published the reference object serving as anchor
 	//MD- So th client waits for the point_attache is created and broadcast (like a boss)
-	waitUntil {!isNil "R3F_LOG_PUBVAR_point_attache"};
+	waitUntil {!isNil "R3F_LOG_PUBVAR_attach_point"};
 	
 	/** Indique quel objet le joueur est en train de déplacer, objNull si aucun */
 	// GT: Indicates which object the player is trying to move, if no objNull
 	//MD- joueur_deplace_objet = player_move_object (learning french and sqf!)
-	R3F_LOG_joueur_deplace_objet = objNull;
+	R3F_LOG_player_target_object = objNull;
 	
 	/** Pseudo-mutex permettant de n'exécuter qu'un script de manipulation d'objet à la fois (true : vérouillé) */
 	// GT: Pseudo-mutex to run only script object manipulation both (true: locked)
 	//MD- verrou = lock
-	R3F_LOG_mutex_local_verrou = false;
+	R3F_LOG_mutex_local_lock = false;
 	
 	/** Objet actuellement sélectionner pour être chargé/remorqué */
 	// GT: Currently selected object to be loaded / towed (GT knocks it out the park)
-	R3F_LOG_objet_selectionne = objNull;
+	R3F_LOG_selected_object = objNull;
 	
-	// On construit la liste des classes des transporteurs dans les quantités associés (pour les nearestObjects, count isKindOf, ...)
+	// On construit la liste des classes des transporters dans les quantités associés (pour les nearestObjects, count isKindOf, ...)
 	// GT: We construct the list of classes of carriers in the associated quantities (for nearestObjects, count isKindOf, ...)
-	R3F_LOG_classes_transporteurs = [];
+	R3F_LOG_transport_classes = [];
 	
 	//MD- forEach transporter in the cfg file
 	{
 		// Add them to the transports list
 		// Eh? where else is this being filled from?
-		R3F_LOG_classes_transporteurs = R3F_LOG_classes_transporteurs + [_x select 0];
-	} forEach R3F_LOG_CFG_transporteurs;
+		R3F_LOG_transport_classes = R3F_LOG_transport_classes + [_x select 0];
+	} forEach R3F_LOG_CFG_transporters;
 	
 	// On construit la liste des classes des transportables dans les quantités associés (pour les nearestObjects, count isKindOf, ...)
 	// GT: We construct the list of classes in the associated transportable quantities (for nearestObjects, count isKindOf ...)
-	R3F_LOG_classes_objets_transportables = [];
+	R3F_LOG_transportable_object_classes = [];
 	
 	//MD- forEach transportable in the cfg file
 	{
 		//MD- See above
-		R3F_LOG_classes_objets_transportables = R3F_LOG_classes_objets_transportables + [_x select 0];
-	} forEach R3F_LOG_CFG_objets_transportables;
+		R3F_LOG_transportable_object_classes = R3F_LOG_transportable_object_classes + [_x select 0];
+	} forEach R3F_LOG_CFG_transportable_objects;
 	
 	//MD- Store the init functions as public vars
-	R3F_LOG_FNCT_objet_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_init.sqf";
-	R3F_LOG_FNCT_heliporteur_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\heliporteur\heliporteur_init.sqf";
-	R3F_LOG_FNCT_remorqueur_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\remorqueur\remorqueur_init.sqf";
-	R3F_LOG_FNCT_transporteur_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\transporteur\transporteur_init.sqf";
+	R3F_LOG_FNC_object_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_init.sqf";
+	R3F_LOG_FNC_helicopter_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\helicopter\helicopter_init.sqf";
+	R3F_LOG_FNCT_tower_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\tower\tower_init.sqf";
+	R3F_LOG_CFG_transporter_init = compile preprocessFile "addons\R3F_ARTY_AND_LOG\R3F_LOG\transporter\transporter_init.sqf";
 	
 	/** Indique quel est l'objet concerné par les variables d'actions des addAction */
 	// GT: Indicates which is the object affected by variables actions addAction
@@ -91,8 +91,8 @@ if !(isServer && isDedicated) then
 	//MD- deplace = moveable
 	//MD- contenu = contents
 	//MD- remorquer = tow
-	//MD- heliporter = lift?
-	//MD- larguer = drop
+	//MD- helicopter = lift?
+	//MD- drop = drop
 	R3F_LOG_action_charger_deplace_valide = false;
 	R3F_LOG_action_charger_selection_valide = false;
 	R3F_LOG_action_contenu_vehicule_valide = false;
@@ -100,8 +100,8 @@ if !(isServer && isDedicated) then
 	R3F_LOG_action_remorquer_deplace_valide = false;
 	R3F_LOG_action_remorquer_selection_valide = false;
 	
-	R3F_LOG_action_heliporter_valide = false;
-	R3F_LOG_action_heliport_larguer_valide = false;
+	R3F_LOG_action_helicopter_valide = false;
+	R3F_LOG_action_heliport_drop_valide = false;
 	
 	R3F_LOG_action_deplacer_objet_valide = false;
 	R3F_LOG_action_selectionner_objet_remorque_valide = false;

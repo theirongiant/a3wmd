@@ -1,6 +1,6 @@
 /**
  * Fait déplacer un objet par le joueur. Il garde l'objet tant qu'il ne le relâche pas ou ne meurt pas.
- * L'objet est relaché quand la variable R3F_LOG_joueur_deplace_objet passe à objNull ce qui terminera le script
+ * L'objet est relaché quand la variable R3F_LOG_player_target_object passe à objNull ce qui terminera le script
  * 
  * @param 0 l'objet à déplacer
  * 
@@ -16,15 +16,15 @@ _config = configFile >> "CfgMovesMaleSdr" >> "States" >> _currentAnim;
 _onLadder =	(getNumber (_config >> "onLadder"));
 if(_onLadder == 1) exitWith{player globalChat "You can't move this object while on a ladder";};
 
-if (R3F_LOG_mutex_local_verrou) then
+if (R3F_LOG_mutex_local_lock) then
 {
-	player globalChat STR_R3F_LOG_mutex_action_en_cours;
+	player globalChat STR_R3F_LOG_action_isnt_completed;
 }
 else
 {
-	R3F_LOG_mutex_local_verrou = true;
+	R3F_LOG_mutex_local_lock = true;
 	
-	R3F_LOG_objet_selectionne = objNull;
+	R3F_LOG_selected_object = objNull;
 	
 	private ["_objet", "_est_calculateur", "_arme_principale", "_arme_principale_accessoires", "_arme_principale_magasines", "_action_menu_release_relative", "_action_menu_release_horizontal" , "_action_menu_45", "_action_menu_90", "_action_menu_180", "_azimut_canon", "_muzzles", "_magazine", "_ammo", "_adjustPOS"];
 	
@@ -39,7 +39,7 @@ else
 		};
 	};
 	if(_tempVar) exitwith {
-		hint format["This object belongs to %1 and they're nearby you cannot take this.", _objet getVariable "R3F_Side"]; R3F_LOG_mutex_local_verrou = false;
+		hint format["This object belongs to %1 and they're nearby you cannot take this.", _objet getVariable "R3F_Side"]; R3F_LOG_mutex_local_lock = false;
 	};
 	_objet setVariable ["R3F_Side", (playerSide), true];
 	
@@ -48,14 +48,14 @@ else
 	_est_calculateur = _objet getVariable "R3F_ARTY_est_calculateur";
 	if !(isNil "_est_calculateur") then
 	{
-		R3F_LOG_mutex_local_verrou = false;
+		R3F_LOG_mutex_local_lock = false;
 		[_objet] execVM "addons\R3F_ARTY_AND_LOG\R3F_ARTY\poste_commandement\deplacer_calculateur.sqf";
 	}
 	else
 	{
 		_objet setVariable ["R3F_LOG_est_deplace_par", player, true];
 		
-		R3F_LOG_joueur_deplace_objet = _objet;
+		R3F_LOG_player_target_object = _objet;
 		
 		// Sauvegarde et retrait de l'arme primaire
 		_arme_principale = primaryWeapon player;
@@ -109,13 +109,13 @@ else
 		// Si le joueur est mort pendant le sleep, on remet tout comme avant
 		if (!alive player) then
 		{
-			R3F_LOG_joueur_deplace_objet = objNull;
+			R3F_LOG_player_target_object = objNull;
 			_objet setVariable ["R3F_LOG_est_deplace_par", objNull, true];
 			// Car attachTo de "charger" positionne l'objet en altitude :
 			_objet setPos [getPos _objet select 0, getPos _objet select 1, 0];
 			_objet setVelocity [0,0,0];
 			
-			R3F_LOG_mutex_local_verrou = false;
+			R3F_LOG_mutex_local_lock = false;
 		}
 		else
 		{
@@ -142,28 +142,28 @@ else
 				};
 			};
 			
-			R3F_LOG_mutex_local_verrou = false;
+			R3F_LOG_mutex_local_lock = false;
 			R3F_LOG_force_horizontally = false;
 			
-			_action_menu_release_relative = player addAction [("<img image='client\icons\r3f_release.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_R3F_LOG_action_relacher_objet + "</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", false, 5, true, true];
+			_action_menu_release_relative = player addAction [("<img image='client\icons\r3f_release.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_R3F_LOG_action_release_object + "</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", false, 5, true, true];
 			_action_menu_release_horizontal = player addAction [("<img image='client\icons\r3f_releaseh.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_RELEASE_HORIZONTAL + "</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", true, 5, true, true];
 			_action_menu_45 = player addAction [("<img image='client\icons\r3f_rotate.paa' color='#06ef00'/> <t color='#06ef00'>Rotate object 45°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 45, 5, true, false];
 			//_action_menu_90 = player addAction [("<img image='client\ui\ui_arrow_combo_ca.paa'/> <t color='#dddd00'>Rotate object 90°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 90, 5, true, false];
 			//_action_menu_180 = player addAction [("<img image='client\ui\ui_arrow_combo_ca.paa'/> <t color='#dddd00'>Rotate object 180°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 180, 5, true, false];
 			
 			// On limite la vitesse de marche et on interdit de monter dans un véhicule tant que l'objet est porté
-			while {!isNull R3F_LOG_joueur_deplace_objet && alive player} do
+			while {!isNull R3F_LOG_player_target_object && alive player} do
 			{
 				if (vehicle player != player) then
 				{
-					player globalChat STR_R3F_LOG_ne_pas_monter_dans_vehicule;
+					player globalChat STR_R3F_LOG_cannot_enter_vehicle;
 					player action ["eject", vehicle player];
 					sleep 1;
 				};
 				
 				if ([(velocity player) select 0,(velocity player) select 1,0] call BIS_fnc_magnitude > 3.5) then
 				{
-					player globalChat STR_R3F_LOG_courir_trop_vite;					
+					player globalChat STR_R3F_LOG_moving_to_fast;					
 					player playMove "AmovPpneMstpSrasWpstDnon";
 					sleep 1;
 				};
@@ -220,7 +220,7 @@ else
 			player removeAction _action_menu_45;
 			//player removeAction _action_menu_90;
 			//player removeAction _action_menu_180;
-			R3F_LOG_joueur_deplace_objet = objNull;
+			R3F_LOG_player_target_object = objNull;
 			
 			_objet setVariable ["R3F_LOG_est_deplace_par", objNull, true];
 			

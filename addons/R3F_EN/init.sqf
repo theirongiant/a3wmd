@@ -59,14 +59,14 @@
 		//MD- Creates a function and then attached it to the eventhandler of R3F_ARTY_AND_LOG_PUBVAR_setDir
 		R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir =
 		{
-			private ["_objet", "_direction"];
-			_objet = _this select 1 select 0;
+			private ["_object", "_direction"];
+			_object = _this select 1 select 0;
 			_direction = _this select 1 select 1;
 			
 			// Orienter l'objet et broadcaster l'effet
 			// GT: Direct object and broadcaster effect
-			_objet setDir _direction;
-			_objet setPos (getPos _objet);
+			_object setDir _direction;
+			_object setPos (getPos _object);
 		};
 		"R3F_ARTY_AND_LOG_PUBVAR_setDir" addPublicVariableEventHandler R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir;
 	};
@@ -86,22 +86,22 @@
 	#else
 		// Pour les actions du PC d'arti
 		// GT: For the actions of arty PC
-		R3F_LOG_joueur_deplace_objet = objNull;
+		R3F_LOG_player_target_object = objNull;
 	#endif
 	
 	// Auto-détection permanente des objets sur le jeu
 	if (isDedicated) then
 	{
 		// Version allégée pour le serveur dédié
-		//execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets_dedie.sqf";
+		//execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objects_dedie.sqf";
 	}
 	else
 	{
-		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";
+		execVM "addons\R3F_ARTY_AND_LOG\monitor_new_objects.sqf";
 		
 		// Disable R3F on map objects that are not network-synced
 		//{
 		//	_x setVariable ["R3F_LOG_disabled", true];
-		//} forEach ((nearestObjects [[0,0], R3F_LOG_CFG_objets_deplacables, 99999]) - (allMissionObjects "All"));
+		//} forEach ((nearestObjects [[0,0], R3F_LOG_CFG_objects_deplacables, 99999]) - (allMissionObjects "All"));
 	};
 };

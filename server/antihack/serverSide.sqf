@@ -27,6 +27,7 @@ _serverID = owner bis_functions_mainscope;
 
 
 //MD- Run constantly (isn't there a 10,000 iteration limit on while loops?)
+//MD- See notes/scriptcalls 10,000 limit is only for unscheduled environment
 while { true } do
 {			
 	//MD- https://community.bistudio.com/wiki/time

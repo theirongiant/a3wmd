@@ -8,7 +8,7 @@
 
 if (!isNil "storeSellingHandle" && {typeName storeSellingHandle == "SCRIPT"} && {!scriptDone storeSellingHandle}) exitWith {hint "Please wait, your previous sale is being processed"};
 
-_crate = missionNamespace getVariable ["R3F_LOG_joueur_deplace_objet", objNull];
+_crate = missionNamespace getVariable ["R3F_LOG_player_target_object", objNull];
 
 /*if !(_crate isKindOf "ReammoBox_F") then
 {
