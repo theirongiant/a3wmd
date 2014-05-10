@@ -24,62 +24,27 @@
 	"buffers":
 	[
 		{
+			"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
+			"settings":
+			{
+				"buffer_size": 4253,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+			"settings":
+			{
+				"buffer_size": 3647,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
 			"settings":
 			{
 				"buffer_size": 5551,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "notes/scriptcalls.txt",
-			"settings":
-			{
-				"buffer_size": 3424,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
-			"settings":
-			{
-				"buffer_size": 5163,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
-			"settings":
-			{
-				"buffer_size": 13916,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "Searching 600 files for \"R3F_LOG_action_charger_deplace_valide\"\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf:\n   94  	//MD- heliporter = lift?\n   95  	//MD- larguer = drop\n   96: 	R3F_LOG_action_charger_deplace_valide = false;\n   97  	R3F_LOG_action_charger_selection_valide = false;\n   98  	R3F_LOG_action_contenu_vehicule_valide = false;\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf:\n   78  	if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then\n   79  	{\n   80: 		_objet addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_charger_deplace + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporteur\\charger_deplace.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_deplace_valide\"];\n   81  	};\n   82  	\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf:\n   27  _resetConditions = \n   28  {\n   29: 	R3F_LOG_action_charger_deplace_valide = false;\n   30  	R3F_LOG_action_charger_selection_valide = false;\n   31  	R3F_LOG_action_contenu_vehicule_valide = false;\n   ..\n  152  					// Condition action charger_deplace\n  153  					//MD- ACTION LOAD VALID\n  154: 					R3F_LOG_action_charger_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle\n  155  						(count crew _objet_pointe == 0) &&  //MD- target object doesn't have any crew\n  156  						(R3F_LOG_joueur_deplace_objet == _objet_pointe) && // this is object playere is moving\n  ...\n  201  			{\n  202  				// Condition action charger_deplace\n  203: 				R3F_LOG_action_charger_deplace_valide = (alive _objet_pointe && (vehicle player == player) && (!isNull R3F_LOG_joueur_deplace_objet) &&\n  204  					!(R3F_LOG_joueur_deplace_objet getVariable \"R3F_LOG_disabled\") &&\n  205  					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) &&\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/transporteur/transporteur_init.sqf:\n   22  };\n   23  \n   24: _transporteur addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_charger_deplace + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporteur\\charger_deplace.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_deplace_valide\"];\n   25  \n   26  _transporteur addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_charger_selection + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporteur\\charger_selection.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_selection_valide\"];\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/init.sqf:\n   94  	//MD- helicopter = lift?\n   95  	//MD- drop = drop\n   96: 	R3F_LOG_action_charger_deplace_valide = false;\n   97  	R3F_LOG_action_charger_selection_valide = false;\n   98  	R3F_LOG_action_contenu_vehicule_valide = false;\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_init.sqf:\n   78  	if ({_objet isKindOf _x} count R3F_LOG_CFG_moveable_objects > 0) then\n   79  	{\n   80: 		_objet addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_load_in_vehicle + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporter\\charger_deplace.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_deplace_valide\"];\n   81  	};\n   82  	\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/surveiller_conditions_actions_menu.sqf:\n   27  _resetConditions = \n   28  {\n   29: 	R3F_LOG_action_charger_deplace_valide = false;\n   30  	R3F_LOG_action_charger_selection_valide = false;\n   31  	R3F_LOG_action_contenu_vehicule_valide = false;\n   ..\n  152  					// Condition action charger_deplace\n  153  					//MD- ACTION LOAD VALID\n  154: 					R3F_LOG_action_charger_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle\n  155  						(count crew _objet_pointe == 0) &&  //MD- target object doesn't have any crew\n  156  						(R3F_LOG_player_target_object == _objet_pointe) && // this is object playere is moving\n  ...\n  190  			{\n  191  				// Condition action charger_deplace\n  192: 				R3F_LOG_action_charger_deplace_valide = (alive _objet_pointe && (vehicle player == player) && (!isNull R3F_LOG_player_target_object) &&\n  193  					!(R3F_LOG_player_target_object getVariable \"R3F_LOG_disabled\") &&\n  194  					({R3F_LOG_player_target_object isKindOf _x} count R3F_LOG_transportable_object_classes > 0) &&\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporter/transporteur_init.sqf:\n   22  };\n   23  \n   24: _transporter addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_load_in_vehicle + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporter\\charger_deplace.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_deplace_valide\"];\n   25  \n   26  _transporter addAction [(\"<img image='client\\icons\\r3f_loadin.paa' color='#06ef00'/> <t color='#06ef00'>\" + STR_R3F_LOG_action_load_into + \"</t>\"), \"addons\\R3F_ARTY_AND_LOG\\R3F_LOG\\transporter\\charger_selection.sqf\", nil, 6, true, true, \"\", \"R3F_LOG_objet_addAction == _target && R3F_LOG_action_charger_selection_valide\"];\n\n12 matches across 8 files\n",
-			"settings":
-			{
-				"buffer_size": 5505,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
-			}
-		},
-		{
-			"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
-			"settings":
-			{
-				"buffer_size": 4062,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "addons/R3F_ARTY_AND_LOG/dictionary.txt",
-			"settings":
-			{
-				"buffer_size": 23,
-				"line_ending": "Unix",
-				"name": "Dictionary"
 			}
 		}
 	],
@@ -120,8 +85,14 @@
 	},
 	"file_history":
 	[
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_ARTY_disable_enable.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/dictionary.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+		"/home/markd/arma/arma3/WastelandMD/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/notes/scriptcalls.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/make_pbo.bat",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_deplacable/deplacer.sqf",
@@ -130,7 +101,6 @@
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporter/decharger.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/tower/remorqueur_init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/movable_object/moveable.sqf",
-		"/home/markd/arma/arma3/WastelandMD/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/en_strings_lang.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporter/voir_contenu_vehicule.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/fr_strings_lang.sqf",
@@ -184,15 +154,11 @@
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/en_strings_lang.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_ARTY_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/notes/orderofexe.txt",
-		"/home/markd/arma/arma3/WastelandMD/notes/scriptcalls.txt",
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/serverSide.sqf",
 		"/home/markd/arma/arma3/WastelandMD/orderofexe.txt",
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/setup.sqf",
@@ -246,8 +212,7 @@
 		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/hosting/list.cfm",
 		"/home/markd/iomart/ControlPanel2/cfcomponents/account/main.cfc",
 		"/home/markd/java/reseller/ResellerAPI/includes/literals.inc.php",
-		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/init.sqf",
-		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/jump.sqf"
+		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/init.sqf"
 	],
 	"find":
 	{
@@ -286,6 +251,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"R3F_LOG_FNCT_objet_init",
+			"count",
+			"R3F_LOG_CFG_remorqueurs",
 			"R3F_LOG_action_charger_deplace_valide",
 			"paa",
 			"detacher.sqf",
@@ -410,10 +378,7 @@
 			"hostingservices",
 			"Any service within 60",
 			"valueForBinding",
-			"timeout",
-			"mailbox",
-			"#3693cf",
-			"#3693cf;"
+			"timeout"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -538,6 +503,70 @@
 			[
 				{
 					"buffer": 0,
+					"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3952,
+								3952
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 780.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3647,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2806,
+								2806
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 468.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
 					"semi_transient": false,
 					"settings":
@@ -549,8 +578,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								3746,
+								3746
 							]
 						],
 						"settings":
@@ -562,259 +591,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "notes/scriptcalls.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3424,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2061,
-								2061
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5163,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								536,
-								536
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SQF Language/SQF.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 819.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13916,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10293,
-								10293
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SQF Language/SQF.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2067.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5505,
-						"regions":
-						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										212,
-										249
-									],
-									[
-										834,
-										871
-									],
-									[
-										1047,
-										1084
-									],
-									[
-										1309,
-										1346
-									],
-									[
-										1675,
-										1712
-									],
-									[
-										2412,
-										2449
-									],
-									[
-										2936,
-										2973
-									],
-									[
-										3545,
-										3582
-									],
-									[
-										3748,
-										3785
-									],
-									[
-										4010,
-										4047
-									],
-									[
-										4376,
-										4413
-									],
-									[
-										5099,
-										5136
-									]
-								],
-								"scope": ""
-							}
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"detect_indentation": false,
-							"incomplete_sync": null,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4062,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SQF Language/SQF.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "addons/R3F_ARTY_AND_LOG/dictionary.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 23,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								23,
-								23
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Dictionary",
-							"incomplete_sync": null,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
 					"type": "text"
 				}
 			]

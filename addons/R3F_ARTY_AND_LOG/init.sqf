@@ -80,6 +80,8 @@
 	//MD- yep 
 	#ifdef R3F_LOG_enable
 		//MD- By this point I have to assume that including a file basically inserts it's contents at this position
+		//MD- This init script stores the various init scripts for the different classes of logistics items and
+		//MD- starts up the watch_action_menu script
 		#include "R3F_LOG\init.sqf"
 		//MD- and set a global flag to say that we're logistically active
 		R3F_LOG_active = true;
@@ -97,6 +99,7 @@
 	}
 	else
 	{
+		//MD- runs watch_new_objects script
 		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";
 		
 		// Disable R3F on map objects that are not network-synced

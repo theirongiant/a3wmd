@@ -18,6 +18,8 @@ _objet = _this select 0;
 _doLock = 0;
 _doUnlock = 1;
 
+
+//MD- If object doesn't have disabled flag then set it to false
 _est_desactive = _objet getVariable "R3F_LOG_disabled";
 if (isNil "_est_desactive") then
 {
@@ -25,13 +27,18 @@ if (isNil "_est_desactive") then
 };
 
 // Définition locale de la variable si elle n'est pas définie sur le réseau
+// GT: Resolution of the local variable if it is not defined in the network
+// MD- if object doesn't have is_transportable(moveable) flag then set it to objNull
 _est_transporte_par = _objet getVariable "R3F_LOG_est_transporte_par";
 if (isNil "_est_transporte_par") then
 {
+	//MD- boolean param is whether object is broadcast to network
 	_objet setVariable ["R3F_LOG_est_transporte_par", objNull, false];
 };
 
 // Définition locale de la variable si elle n'est pas définie sur le réseau
+// GT: Resolution of the local variable if it is not defined in the network
+//MD- If object doesn't have is moved by(moving?) flag set then set to objNull
 _est_deplace_par = _objet getVariable "R3F_LOG_est_deplace_par";
 if (isNil "_est_deplace_par") then
 {
@@ -39,6 +46,7 @@ if (isNil "_est_deplace_par") then
 };
 
 // Ne pas monter dans un véhicule qui est en cours de transport
+// GT: Do not ride in a vehicle that is in transit
 _objet addEventHandler ["GetIn",
 {
 	_veh = _this select 0;
