@@ -288,6 +288,7 @@ while {true} do
 			!(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled")); //MD- addAction object ain't disabled
 		
 		// Condition action heliport_larguer
+		// GT: Heli drop
 		R3F_LOG_action_heliport_larguer_valide = (driver R3F_LOG_objet_addAction == player && //MD- player is driver of addAction object
 			!isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") && //MD- the addAction object's helicopter isn't null
 			/*((velocity R3F_LOG_objet_addAction) call BIS_fnc_magnitude < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) && */ 

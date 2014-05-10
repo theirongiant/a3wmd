@@ -56,7 +56,7 @@ while {true} do
 			// Note : les expressions de conditions ne sont pas factorisées pour garder de la clarté (déjà que c'est pas vraiment ça) (et le gain serait minime)
 			// GT: Note: the terms of conditions are not factored to keep clarity (already it's not really) (and the gain would be minimal)
 
-			//MD- set _canLock to objects objectLocked property (or false if it's not set)
+			//MD- set _canLock to true unless the object is already locked
 			Object_canLock = !(_objet_pointe getVariable ['objectLocked', false]);
 			
 			// Si l'objet est un objet déplaçable

@@ -5,6 +5,10 @@
 
 // Parse move string to array; on failure, outputs input string
 
+//MD- Take an animation string and turn it into an array
+//MD- break it into 5 letter chunks
+//MD- create an array of [first letter, remaining 4 letters]
+
 private ["_moveArr", "_result", "_x", "_type", "_value"];
 
 _moveArr = toArray _this;
