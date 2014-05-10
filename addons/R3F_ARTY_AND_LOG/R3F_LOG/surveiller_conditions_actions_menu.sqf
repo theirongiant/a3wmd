@@ -277,8 +277,8 @@ while {true} do
 		// GT: Action helicopter
 		R3F_LOG_action_heliporter_valide = (driver R3F_LOG_objet_addAction == player && //MD- driver of the AddAction object is the player
 			(
-				{_//MD- test all heli-transportable objects within 15 of the addAction object
-					x != R3F_LOG_objet_addAction && //MD- it's not the addAction object 
+				{//MD- test all heli-transportable objects within 15 of the addAction object
+					_x != R3F_LOG_objet_addAction && //MD- it's not the addAction object 
 					!(_x getVariable "R3F_LOG_disabled") //MD- it's not disabled
 				} count (nearestObjects [R3F_LOG_objet_addAction, R3F_LOG_CFG_objets_heliportables, 15]) > 0 
 			) && //MD- at least one heliportable object nearby
