@@ -36,6 +36,17 @@
   * - The execVM is better known and understood by the mission editor 
   * - The client init arty is blocking: it expects a PUBVAR server (the attachment point) 
   */
+
+	//MD- if tsting R3F on it's own you also need to include:
+	//MD- client/icons
+	//MD- client/functions/fn_GetMoveParams.sqf
+	//MD- client/functions/fn_ParseMove.sqf
+	//MD- client/functions/fn_splitString.sqf
+	//MD- server/functions/getPos3D.sqf
+	//MD- check client/functions/clientCompile.sqf for how they are included.
+	//MD- check /globalCompile.sqf for declaration of mf_compile
+
+
 [] spawn
 {
 	//MD- Set language (to en)

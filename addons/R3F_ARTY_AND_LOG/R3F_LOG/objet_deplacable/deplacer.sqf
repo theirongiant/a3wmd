@@ -124,7 +124,7 @@ else
 			}
 			else
 			{
-				//MD- otherwise if play an animation based on whether player has a handgun.
+				//MD- otherwise play an animation based on whether player has a handgun.
 				if (handgunWeapon player == "") then
 				{
 					player playMove "AmovPercMstpSnonWnonDnon";
@@ -218,39 +218,56 @@ else
 			R3F_LOG_mutex_local_verrou = false;
 			R3F_LOG_force_horizontally = false;
 			
-			_action_menu_release_relative = player addAction [("<img image='client\icons\r3f_release.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_R3F_LOG_action_relacher_objet + "</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", false, 5, true, true];
-			_action_menu_release_horizontal = player addAction [("<img image='client\icons\r3f_releaseh.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_RELEASE_HORIZONTAL + "</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", true, 5, true, true];
-			_action_menu_45 = player addAction [("<img image='client\icons\r3f_rotate.paa' color='#06ef00'/> <t color='#06ef00'>Rotate object 45°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 45, 5, true, false];
+			_action_menu_release_relative = player addAction [ //MD- Release the object
+				("<img image='client\icons\r3f_release.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_R3F_LOG_action_relacher_objet + "</t>"), 
+				"addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", false, 5, true, true];
+
+			_action_menu_release_horizontal = player addAction [ //MD- release horizontal (never have been able to figure out what this does in game)
+				("<img image='client\icons\r3f_releaseh.paa' color='#06ef00'/> <t color='#06ef00'>" + STR_RELEASE_HORIZONTAL + "</t>"), 
+				"addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\relacher.sqf", true, 5, true, true];
+
+			_action_menu_45 = player addAction [ //MD- rotate object 45 deg
+			("<img image='client\icons\r3f_rotate.paa' color='#06ef00'/> <t color='#06ef00'>Rotate object 45°</t>"), 
+			"addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 45, 5, true, false];
+			//MD- wonder why theses were removed?
 			//_action_menu_90 = player addAction [("<img image='client\ui\ui_arrow_combo_ca.paa'/> <t color='#dddd00'>Rotate object 90°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 90, 5, true, false];
 			//_action_menu_180 = player addAction [("<img image='client\ui\ui_arrow_combo_ca.paa'/> <t color='#dddd00'>Rotate object 180°</t>"), "addons\R3F_ARTY_AND_LOG\R3F_LOG\objet_deplacable\rotate.sqf", 180, 5, true, false];
 			
 			// On limite la vitesse de marche et on interdit de monter dans un véhicule tant que l'objet est porté
+			// Walking speed is limited and it is forbidden to ride in a vehicle as the object is brought(carried)
+			//MD- while the player is alive and is carrying an object
+			//MD- Stay in this loop until the conditions change
 			while {!isNull R3F_LOG_joueur_deplace_objet && alive player} do
 			{
-				if (vehicle player != player) then
+				if (vehicle player != player) then //MD- player ain't in vehicle 
 				{
-					player globalChat STR_R3F_LOG_ne_pas_monter_dans_vehicule;
-					player action ["eject", vehicle player];
-					sleep 1;
+					player globalChat STR_R3F_LOG_ne_pas_monter_dans_vehicule; // Say: You can't get in a vehicle while you're carrying this object !
+					player action ["eject", vehicle player]; //MD- Kick his ass out
+					sleep 1; //MD- Wait for anim to complete
 				};
 				
 				if ([(velocity player) select 0,(velocity player) select 1,0] call BIS_fnc_magnitude > 3.5) then
 				{
-					player globalChat STR_R3F_LOG_courir_trop_vite;					
-					player playMove "AmovPpneMstpSrasWpstDnon";
+					player globalChat STR_R3F_LOG_courir_trop_vite; //MD- Say: Moving too fast! (Press C to slow down)
+					player playMove "AmovPpneMstpSrasWpstDnon"; //MD- [] call BIS_animViewer to see anim viewer in mission editor
 					sleep 1;
 				};
-				
+	
 				sleep 0.25;
 			};
 			
 			// L'objet n'est plus porté, on le repose
+			// GT: The object is no longer worn, based on the
+			//MD- not the cleanest translate but we're dropping the object or we're dead 
+			//MD- so first step is to detach the object from our player 
 			detach _objet;
 
 			// this addition comes from Sa-Matra (fixes the heigt of some of the objects) - all credits for this fix go to him!
 
+			//MD- Get the object type
 			_class = typeOf _objet;
 
+			//MD- some objects must not naturally sit at the correct height
 			_zOffset = switch (true) do
 			{
 				//case (_class == "Land_Scaffolding_F"):         { 3 }; 
@@ -259,45 +276,65 @@ else
 				default { 0 };
 			};
 
+			//MD- Need to wait till I get throught the release script to unlock the mysteries of
+			//MD- what the hell release horizontallly actually does
 			if (R3F_LOG_force_horizontally) then
 			{
+				//MD- reset it to false
 				R3F_LOG_force_horizontally = false;
 				
+				//MD- getPosATL (At Terrain Level) returns a positionATL array (x (north/south), y (east/west, z (height above terrain))
 				_objectATL = getPosATL _objet;
 
+				//MD- correct for objects that don't sit on ground correctly
 				if ((_objectATL select 2) - _zOffset < 0) then
 				{
 					_objectATL set [2, 0 + _zOffset];
 					_objet setPosATL _objectATL;
 				}
-				else
+				else //MD- Not sure why the players z is getting involved here or why the switch to ASL
 				{
-					_objectASL = getPosASL _objet;
-					_objectASL set [2, ((getPosASL player) select 2) + _zOffset];
-					_objet setPosASL _objectASL;
-				};
+					_objectASL = getPosASL _objet; //MD- get object's position relative to terrain
+					_objectASL set [2, ((getPosASL player) select 2) + _zOffset]; //MD- set the z to be the players z + offset if any
+					_objet setPosASL _objectASL; //MD- set the object's new position
+				}; //MD- Okay I think release horizontal retains the object at it's z position as opposed to dropping it to the ground (need to test)
+				//MD- Would make sense, would allow you to partially embed walls in the ground rather than have some of the haphazard placements you get
+				//MD- when it tries to lay flat on bumpy ground. Neat, that always bugged the life out me.
 				
+				//MD- http://forums.bistudio.com/showthread.php?50914-SetVectorUp-SetVectorDir-and-3D-coords
+				//MD- https://community.bistudio.com/wiki/setVectorUp
+				//MD- make sure the object points up
 				_objet setVectorUp [0,0,1];
 			}
 			else
 			{
 				_objectPos = getPos _objet;
+				//MD- fn_getPos3D is in server/fn_getPos3D.sqf
+				//MD- for ease I've copied the notes from fn_getPos3D as that covers the explanation
+				// This function is to counter the fact that "getPos" is relative to the floor under the object,
+				// while most functions require positions to be from ground or sea level, whichever is highest
 				_objectPos set [2, ((player call fn_getPos3D) select 2) + _zOffset];
 				_objet setPos _objectPos;
 			};
 			
+			//MD- woah boy!
 			_objet setVelocity [0,0,0];
 			
+			//MD- clean up the action menu
 			player removeAction _action_menu_release_relative;
 			player removeAction _action_menu_release_horizontal;
 			player removeAction _action_menu_45;
 			//player removeAction _action_menu_90;
 			//player removeAction _action_menu_180;
+
+			//MD- set the player carried object to null
 			R3F_LOG_joueur_deplace_objet = objNull;
 			
+			//MD- and conversely set the objects carried by variable to null also
 			_objet setVariable ["R3F_LOG_est_deplace_par", objNull, true];
 			
 			// Restauration de l'arme primaire
+			//MD- restore the primary weapon.
 			if (alive player && _arme_principale != "") then
 			{
 				if(primaryWeapon player != "") then {
