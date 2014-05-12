@@ -47,4 +47,5 @@ if (call compile (_assignChecksum + "isNil _flagChecksum")) then
 	call compile (_assignChecksum + "call compile format ['%1 = compileFinal str true', _flagChecksum]");
 };
 
+//MD- if anyone tries to change the mpPacketKey then call TPG_fnc_MPExec
 call compile (_assignPacketKey + "_mpPacketKey addPublicVariableEventHandler compileFinal '_this call TPG_fnc_MPexec'");

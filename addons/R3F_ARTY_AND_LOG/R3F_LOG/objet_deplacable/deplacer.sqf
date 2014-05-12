@@ -334,15 +334,20 @@ else
 			_objet setVariable ["R3F_LOG_est_deplace_par", objNull, true];
 			
 			// Restauration de l'arme primaire
-			//MD- restore the primary weapon.
+			//MD- restore the primary weapon if it's been stored previously
 			if (alive player && _arme_principale != "") then
 			{
-				if(primaryWeapon player != "") then {
+				//MD- if player doesn't currently have a primary weapon
+				if(primaryWeapon player != "") then 
+				{
+					//MD- create a weaponholder (which is what exactly?)
 					_o = createVehicle ["WeaponHolder", player modelToWorld [0,0,0], [], 0, "NONE"];
+					//MD- add the stored weapon to it
 					_o addWeaponCargoGlobal [_arme_principale, 1];
 				}
-				else {
-					{
+				else 
+				{
+					{ //MD- return all the magazines with correct ammo counts
 						_magazine = _x select 0;
 						_ammo = _x select 1;
 						
@@ -351,10 +356,13 @@ else
 						};
 					} forEach _arme_principale_magasines; // add all default primery weapon magazines
 					
+					//MD- Add primary weapon to player
 					player addWeapon _arme_principale;
 					
+					//MD- add back accessories
 					{ if(_x!="") then { player addPrimaryWeaponItem _x; }; } foreach (_arme_principale_accessoires);
 					
+					//MD- select primary weapon
 					player selectWeapon _arme_principale;
 					//player selectWeapon (getArray (configFile >> "cfgWeapons" >> _arme_principale >> "muzzles") select 0);
 				};
