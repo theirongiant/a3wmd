@@ -4,7 +4,7 @@
 // This function is to counter the fact that "getPos" is relative to the floor under the object,
 // while most functions require positions to be from ground or sea level, whichever is highest
 
-//MD- gets passed in the player
+//MD- gets passed in the player or vehcile
 
 private "_pos";
 _pos = getPosATL _this;

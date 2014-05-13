@@ -24,26 +24,78 @@
 	"buffers":
 	[
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
+			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
 			"settings":
 			{
-				"buffer_size": 4253,
+				"buffer_size": 3873,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
 			"settings":
 			{
-				"buffer_size": 3647,
+				"buffer_size": 8008,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
+			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf",
 			"settings":
 			{
-				"buffer_size": 5551,
+				"buffer_size": 7430,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/functions/fn_getPos3D.sqf",
+			"settings":
+			{
+				"buffer_size": 469,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server/functions/fn_vehicleInit.sqf",
+			"settings":
+			{
+				"buffer_size": 3959,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 558 files for \"fn_VehicleInit\"\n\n/home/markd/arma/arma3/WastelandMD/globalCompile.sqf:\n   77  fn_getPos3D = [_serverFunc, \"fn_getPos3D.sqf\"] call mf_compile;\n   78  fn_splitString = [_serverFunc, \"fn_splitString.sqf\"] call mf_compile;\n   79: fn_vehicleInit = [_serverFunc, \"fn_vehicleInit.sqf\"] call mf_compile;\n   80  generateKey = [_serverFunc, \"network\\generateKey.sqf\"] call mf_compile;\n   81  getBallMagazine = [_serverFunc, \"getBallMagazine.sqf\"] call mf_compile;\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/heliporteur/larguer.sqf:\n   44  	else\n   45  	{\n   46: 		[_objet, {_this call detachTowedObject}, false, false, _objet] call fn_vehicleInit;\n   47  	};\n   48  	\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/detacher.sqf:\n   70  		else\n   71  		{\n   72: 			[_objet, {_this call detachTowedObject}, false, false, _objet] call fn_vehicleInit;\n   73  		};\n   74  		\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf:\n   71  			else //MD- Hooking it to a tow-er that isn't local\n   72  			{\n   73: 				//MD- jump to server/fn_vehicleInit\n   74: 				[_objet, {_this lockDriver true}, false, false, _objet] call fn_vehicleInit;\n   75  			};\n   76  			\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_selection.sqf:\n   58  					else\n   59  					{\n   60: 						[_objet, _disableDriving, false, false, _objet] call fn_vehicleInit;\n   61  					};\n   62  					\n\n/home/markd/arma/arma3/WastelandMD/addons/proving_ground/fnc_exec_console.sqf:\n   62  			GET_CTRL(balca_debug_console_history_IDC) lbSetData [(lbSize GET_CTRL(balca_debug_console_history_IDC))-1,_command];\n   63  		};\n   64: 		[player, _command] call fn_vehicleInit;\n   65  		// processInitCommands;\n   66  	};\n   ..\n   76  		};\n   77  		player setVariable ['PG_result',[]];\n   78: 		[player, (\"if isServer then {this setVariable [\"\"PG_result\"\",[call {\"+_command+\"}],true]}\")] call fn_vehicleInit;\n   79  		// processInitCommands;\n   80  \n\n/home/markd/arma/arma3/WastelandMD/client/functions/radarDeploy.sqf:\n  116          player setVariable ['PG_result',[]];\n  117          _command = format[\"if isServer then {this setVariable [\"\"PG_result\"\",[call {[%1,%2,%3,%4] execVM 'server\\functions\\radarMarkerUpdate.sqf'}],true]}\",str(_uniqueID),str(_radarStationPos),str(_playerSide),_markerState];\n  118: 		[player, _command] spawn fn_vehicleInit;\n  119  		//processInitCommands;      \n  120  	};     \n\n/home/markd/arma/arma3/WastelandMD/notes/orderofexe.txt:\n   21  		>./server/functions/fn_getPos3D.sqf\n   22  		>./server/functions/fn_splitString.sqf\n   23: 		>./server/functions/fn_vehicleInit.sqf\n   24  		>./server/functions/network/generateKey.sqf\n   25  		>./server/functions/getBallMagazine.sqf\n\n/home/markd/arma/arma3/WastelandMD/server/functions/createBase.sqf:\n   60  		if (!isNil \"_fuel\") then {_newObj setFuel _fuel};\n   61  		if (!isNil \"_damage\") then {_newObj setDamage _damage};\n   62: 		if (!isNil \"_vehicleinit\") then {[_newObj, format [\"%1;\",_vehicleinit]] call fn_vehicleInit};\n   63  		// processInitCommands;\n   64  		_newObjs = _newObjs + [_newObj];\n\n/home/markd/arma/arma3/WastelandMD/server/functions/fn_vehicleInit.sqf:\n    1: // ARMA3 function fn_vehicleInit v0.5 - by SPUn / lostvar & AgentRev\n    2  // Function to set custom init commands for units & vehicles\n    3  // Call this from another scripts with syntax:\n    4: // [_vehicle, _customInit, _persistence, _thisCheck] call fn_vehicleInit;\n    5  //\n    6  // IMPORTANT : Set \"_persistence\" to FALSE if you used to call \"clearVehicleInit\" right after \"processInitCommands\"\n\n/home/markd/arma/arma3/WastelandMD/server/functions/spawnStoreObject.sqf:\n  121  				waitUntil {!isNull driver _object};\n  122  				\n  123: 				[_object, { {_x setName [\"AI\",\"\",\"\"]} forEach crew _this }, true, false] spawn fn_vehicleInit;\n  124  \n  125  				//assign AI to player's side to allow terminal connection\n\n15 matches across 11 files\n\n\nSearching 558 files for \"R3F_LOG_joueur_deplace_objet\"\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf:\n  100  		// Pour les actions du PC d'arti\n  101  		// GT: For the actions of arty PC\n  102: 		R3F_LOG_joueur_deplace_objet = objNull;\n  103  	#endif\n  104  	\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf:\n   44  	// GT: Indicates which object the player is trying to move, if no objNull\n   45  	//MD- joueur_deplace_objet = player_move_object (learning french and sqf!)\n   46: 	R3F_LOG_joueur_deplace_objet = objNull;\n   47  	\n   48  	/** Pseudo-mutex permettant de n'exécuter qu'un script de manipulation d'objet à la fois (true : vérouillé) */\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf:\n   72  				R3F_LOG_action_deplacer_objet_valide = (vehicle player == player && //MD- Player isn't in vehicle AND\n   73  					(count crew _objet_pointe == 0) &&  //MD- Object doesn't have a crew AND\n   74: 					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Object player is moving is null AND\n   75  					(\n   76  						isNull (_objet_pointe getVariable \"R3F_LOG_est_deplace_par\") ||  //MD- player that is moving object is null OR\n   ..\n   92  					//MD- TOWER VALID\n   93  					R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && //MD- Player isn't in a vehicle AND\n   94: 						(alive R3F_LOG_joueur_deplace_objet) && //MD- object being moved is alive AND\n   95  						(\n   96  							isNull driver _objet_pointe ||  //MD- the object doesn't have a driver OR\n   ..\n  102  							}\n  103  						) && //MD- And\n  104: 						(R3F_LOG_joueur_deplace_objet == _objet_pointe) && //MD- Object player is moving is this object AND\n  105  						(\n  106  							{ //MD- if there is a towable object within 18m\n  ...\n  126  						{!isPlayer driver _objet_pointe && {getText (configFile >> \"CfgVehicles\" >> typeOf driver _objet_pointe >> \"simulation\") == \"UAVPilot\"}}\n  127  					) && //MD- object doens't have a driver\n  128: 					isNull R3F_LOG_joueur_deplace_objet && //MD- player isn't moving an object already\n  129  					isNull (_objet_pointe getVariable \"R3F_LOG_est_transporte_par\") && //MD- object isn't currently being trnsported\n  130  					(\n  ...\n  136  				//MD- DETACH_VALID\n  137  				R3F_LOG_action_detacher_valide = (vehicle player == player && //MD- Player isn't in vehicle\n  138: 					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Player isn't already moving an object\n  139  					!isNull (_objet_pointe getVariable \"R3F_LOG_est_transporte_par\") && //MD- Object is being transported by something\n  140  					!(_objet_pointe getVariable \"R3F_LOG_disabled\")); //MD- Object isn't disabled\n  ...\n  154  					R3F_LOG_action_charger_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle\n  155  						(count crew _objet_pointe == 0) &&  //MD- target object doesn't have any crew\n  156: 						(R3F_LOG_joueur_deplace_objet == _objet_pointe) && // this is object player is moving\n  157  						{ //MD- Loop round all transport classes within 18m\n  158  							_x != _objet_pointe && //MD- object isn't a transporter\n  ...\n  169  				R3F_LOG_action_selectionner_objet_charge_valide = (vehicle player == player && //MD- player isn't in vehicle\n  170  					(count crew _objet_pointe == 0) && //MD- target object doesn't have crew\n  171: 					isNull R3F_LOG_joueur_deplace_objet &&  //MD- player not moving an object\n  172  					isNull (_objet_pointe getVariable \"R3F_LOG_est_transporte_par\") && //MD- target object isn't being transported\n  173  					(\n  ...\n  186  				R3F_LOG_action_remorquer_deplace_valide = (vehicle player == player && //MD- player isn't in vehicle\n  187  					(alive _objet_pointe) && //MD- target object is alive\n  188: 					(!isNull R3F_LOG_joueur_deplace_objet) && //MD- player IS moving an object\n  189: 					(alive R3F_LOG_joueur_deplace_objet) && //MD- the object the player is moving is alive ?\n  190: 					!(R3F_LOG_joueur_deplace_objet getVariable \"R3F_LOG_disabled\") && //MD- players object isn't disabled\n  191: 					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_CFG_objets_remorquables > 0) && //MD- players object is a towable\n  192  					isNull (_objet_pointe getVariable \"R3F_LOG_remorque\") && //MD- target object isn't being towed?\n  193  					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && //MD- target object isn't moving much\n  ...\n  199  				R3F_LOG_action_remorquer_selection_valide = (vehicle player == player && //MD- Player isn't in vehicle\n  200  					(alive _objet_pointe) && //MD- target object is alive\n  201: 					(isNull R3F_LOG_joueur_deplace_objet) && //MD- player isn't already moving an object\n  202  					(!isNull R3F_LOG_objet_selectionne) &&  //MD- selected object isn't null\n  203  					(R3F_LOG_objet_selectionne != _objet_pointe) && //MD- selected object isn't the target object\n  ...\n  218  				R3F_LOG_action_charger_deplace_valide = (alive _objet_pointe && //MD- Target object is alive\n  219  					(vehicle player == player) &&  //MD- player isn't a vehicle \n  220: 					(!isNull R3F_LOG_joueur_deplace_objet) && //MD- player IS carrying an object ?\n  221: 					!(R3F_LOG_joueur_deplace_objet getVariable \"R3F_LOG_disabled\") && //MD- the carried object isn't disabled\n  222: 					({R3F_LOG_joueur_deplace_objet isKindOf _x} count R3F_LOG_classes_objets_transportables > 0) && //MD- carried object is a transportable\n  223  					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && //MD- target object isn't moving faster than 6\n  224  					(getPos _objet_pointe select 2 < 2) &&  //MD- target object is less than 2 off the gound\n  ...\n  229  				R3F_LOG_action_charger_selection_valide = (alive _objet_pointe && //MD- target object is alive\n  230  					(vehicle player == player) && //MD- player isn't in vehicle\n  231: 					(isNull R3F_LOG_joueur_deplace_objet) && //MD- player object isn't null\n  232  					(!isNull R3F_LOG_objet_selectionne) && //MD- we have an object selection\n  233  					(R3F_LOG_objet_selectionne != _objet_pointe) && //MD- selected object not the same as target object\n  ...\n  242  				R3F_LOG_action_contenu_vehicule_valide = (alive _objet_pointe && //MD- target object is alive\n  243  					(vehicle player == player) && //MD- player not in vehicle\n  244: 					(isNull R3F_LOG_joueur_deplace_objet) && //MD- player object is null\n  245  					((velocity _objet_pointe) call BIS_fnc_magnitude < 6) && //MD- target object isn't moving much\n  246  					(getPos _objet_pointe select 2 < 2) && //MD- target object ain't far off ground\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf:\n    1  /**\n    2   * Fait déplacer un objet par le joueur. Il garde l'objet tant qu'il ne le relâche pas ou ne meurt pas.\n    3:  * L'objet est relaché quand la variable R3F_LOG_joueur_deplace_objet passe à objNull ce qui terminera le script\n    4   * \n    5   * GT:\n    6   * Made to move an object by the player. It keeps the subject as he does not or does not die hard. \n    7:  * The object is released when the variable passes R3F_LOG_joueur_deplace_objet objNull the end the script\n    8   *\n    9   * @param 0 l'objet à déplacer\n   ..\n   79  		\n   80  		//MD- set object being moved to be the object \n   81: 		R3F_LOG_joueur_deplace_objet = _objet;\n   82  		\n   83  		// Sauvegarde et retrait de l'arme primaire\n   ..\n  158  		{\n  159  			//MD- set the current moving object to null\n  160: 			R3F_LOG_joueur_deplace_objet = objNull;\n  161  			//MD- set the objects mover to null\n  162  			_objet setVariable [\"R3F_LOG_est_deplace_par\", objNull, true];\n  ...\n  238  			//MD- while the player is alive and is carrying an object\n  239  			//MD- Stay in this loop until the conditions change\n  240: 			while {!isNull R3F_LOG_joueur_deplace_objet && alive player} do\n  241  			{\n  242  				if (vehicle player != player) then //MD- player ain't in vehicle \n  ...\n  329  \n  330  			//MD- set the player carried object to null\n  331: 			R3F_LOG_joueur_deplace_objet = objNull;\n  332  			\n  333  			//MD- and conversely set the objects carried by variable to null also\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/relacher.sqf:\n   20  	};\n   21  \n   22: 	R3F_LOG_joueur_deplace_objet = objNull;\n   23  	sleep 0.1;\n   24  	\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/rotate.sqf:\n   15  	player globalChat STR_R3F_LOG_mutex_action_en_cours; // French crap\n   16  } else {\n   17: 	_targetDirection = (getDir R3F_LOG_joueur_deplace_objet) + _rotateAmount; // Get the direction of the object and increment by _rotateAmount\n   18  	_targetDirection = _targetDirection - getDir player;\n   19  \n   20: 	R3F_LOG_joueur_deplace_objet setDir _targetDirection;\n   21: 	R3F_ARTY_AND_LOG_PUBVAR_setDir = [R3F_LOG_joueur_deplace_objet, _targetDirection];\n   22  	publicVariable \"R3F_ARTY_AND_LOG_PUBVAR_setDir\";\n   23  	R3F_LOG_mutex_local_verrou = false;\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf:\n   27  	\n   28  	//MD- Set _objet to be the object currently being moved\n   29: 	_objet = R3F_LOG_joueur_deplace_objet;\n   30  	\n   31  	//MD- Grab all the tow-ers within 22m\n   ..\n  119  			// GT: To releasing the object to the player (if it has in \"hands\")\n  120  			\n  121: 			R3F_LOG_joueur_deplace_objet = objNull;\n  122  			player playMove \"AinvPknlMstpSlayWrflDnon_medic\";\n  123  			sleep 2;\n\n/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/transporteur/charger_deplace.sqf:\n   19  	private [\"_objet\", \"_classes_transporteurs\", \"_transporteur\", \"_i\"];\n   20  	\n   21: 	_objet = R3F_LOG_joueur_deplace_objet;\n   22  	\n   23  	_transporteur = nearestObjects [_objet, R3F_LOG_classes_transporteurs, 22];\n   ..\n   78  				// Faire relacher l'objet au joueur (si il l'a dans \"les mains\")\n   79  				_objet disableCollisionWith _transporteur;\n   80: 				R3F_LOG_joueur_deplace_objet = objNull;\n   81  				sleep 2;\n   82  				\n\n33 matches across 8 files\n",
+			"settings":
+			{
+				"buffer_size": 14113,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "/home/markd/arma/arma3/untitled-project.txt",
+			"settings":
+			{
+				"buffer_size": 4216,
+				"line_ending": "Unix",
+				"name": "Untitled Project"
+			}
+		},
+		{
+			"file": "/home/markd/arma/arma3/safeZone.sqf",
+			"settings":
+			{
+				"buffer_size": 8630,
+				"line_ending": "Unix",
+				"name": "/*"
+			}
+		},
+		{
+			"file": "server/spawning/vehicleCreation.sqf",
+			"settings":
+			{
+				"buffer_size": 2232,
 				"line_ending": "Unix"
 			}
 		}
@@ -85,14 +137,30 @@
 	},
 	"file_history":
 	[
+		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_vehicleInit.sqf",
+		"/home/markd/arma/arma3/WastelandMD/persistence/world/oSave.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/objectLockStateMachine.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/compileFuncs.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/setup.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/globalCompile.sqf",
+		"/home/markd/arma/arma3/WastelandMD/README.md",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf",
+		"/home/markd/arma/arma3/AI_Test.Altis/AIBEHAVIOR1.fsm",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/surveiller_conditions_actions_menu.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/README.txt",
+		"/home/markd/arma/arma3/WastelandMD/client/functions/parseMove.sqf",
+		"/home/markd/arma/arma3/WastelandMD/client/functions/getMoveParams.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_getPos3D.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_ARTY_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/dictionary.txt",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
 		"/home/markd/arma/arma3/WastelandMD/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/notes/scriptcalls.txt",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/make_pbo.bat",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_deplacable/deplacer.sqf",
@@ -117,7 +185,6 @@
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporter/charger_selection.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/tower/detacher.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/surveiller_conditions_actions_menu.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/addons_config/ACE_OA_objects.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/addons_config/BAF_objects.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/addons_config/arma2_CO_objects.sqf",
@@ -137,7 +204,6 @@
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/helicopter/larguer.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_ARTY_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG_disable_enable.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/README.txt",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporteur/charger_deplace.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporteur/charger_selection.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/transporteur/voir_contenu_vehicule.sqf",
@@ -152,20 +218,15 @@
 		"/home/markd/arma/arma3/WastelandMD/client/systems/selling/sellCrateItems.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/en_strings_lang.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/en_strings_lang.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/notes/orderofexe.txt",
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/serverSide.sqf",
 		"/home/markd/arma/arma3/WastelandMD/orderofexe.txt",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/setup.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/findClientPlayer.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MPexec.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MP.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/compileFuncs.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/flagHandler.sqf",
 		"/home/markd/arma/arma3/duws/orderofexe.txt",
@@ -185,7 +246,6 @@
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/filterExecAttempt.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/serverCompile.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/network/generateKey.sqf",
-		"/home/markd/arma/arma3/WastelandMD/README.md",
 		"/home/markd/arma/arma3/WastelandMD/w3ooa.txt",
 		"/home/markd/arma/arma3/WastelandMD/server/default_config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/objectsSpawning.sqf",
@@ -199,20 +259,12 @@
 		"/home/markd/arma/arma3/WastelandMD/server/spawning/vehicleCreation.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/missions/factoryMethods/deleteClientMarker.sqf",
 		"/home/markd/arma/arma3/scripting.txt",
-		"/home/markd/arma/arma3/WastelandMD/globalCompile.sqf",
 		"/home/markd/arma/arma3/WastelandMD/description.ext",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_findString.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/serverVars.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/cargoToPairs.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/detachTowedObject.sqf",
-		"/home/markd/arma/arma3/WastelandNotes/init.sqf",
-		"/home/markd/arma/arma3/WastelandNotes/description.ext",
-		"/home/markd/arma/arma3/ArmA3_Wasteland.Altis/init.sqf",
-		"/home/markd/iomart/ControlPanel2/multibrand/views/branded/titan/domain_management/hosting/list.cfm",
-		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/hosting/list.cfm",
-		"/home/markd/iomart/ControlPanel2/cfcomponents/account/main.cfc",
-		"/home/markd/java/reseller/ResellerAPI/includes/literals.inc.php",
-		"/home/markd/arma/arma3/KING OF HILL V_0.6.Stratis/init.sqf"
+		"/home/markd/arma/arma3/WastelandNotes/init.sqf"
 	],
 	"find":
 	{
@@ -251,6 +303,25 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"R3F_LOG_joueur_deplace_objet",
+			"fn_VehicleInit",
+			"&quot;",
+			"baseSaving_hoursAlive",
+			"R3F_LOG_mutex_local_verrou",
+			"compileFuncs",
+			"mf_compile",
+			"fn_getPos3D",
+			"fn_getPos£D",
+			"R3F_LOG_force_horizontally",
+			"vehicle player != player",
+			"R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir",
+			"currAction",
+			"getMoveParams",
+			"_est_calculateur",
+			"_onLadder",
+			"_config",
+			"Object_canLock",
+			"STR_R3F_LOG_transport_en_cours",
 			"R3F_LOG_FNCT_objet_init",
 			"count",
 			"R3F_LOG_CFG_remorqueurs",
@@ -359,26 +430,7 @@
 			"globalCom",
 			"\\",
 			"initPlayerServer.sqf",
-			"initPayerServer.sqf",
-			"\\",
-			"fn_MP",
-			"TPG_fnc_MP",
-			"removeNegativeScore",
-			"requestCompensateNegativeScore",
-			"fn_MPExec",
-			"BIS_fnc_execVM",
-			"generateKey",
-			"AW3",
-			"globalCompile",
-			"generateKey",
-			"A3W_network_compileFuncs",
-			"getaaauseridfordomain",
-			"retrieveservices",
-			"filterservices",
-			"hostingservices",
-			"Any service within 60",
-			"valueForBinding",
-			"timeout"
+			"initPayerServer.sqf"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -386,6 +438,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'",
 			"detach.sqf",
 			"cancel_towing.sqf",
 			"release.sqf",
@@ -503,19 +556,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "addons/R3F_ARTY_AND_LOG/init.sqf",
+					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4253,
+						"buffer_size": 3873,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3952,
-								3952
+								3638,
+								3638
 							]
 						],
 						"settings":
@@ -523,31 +576,30 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/SQF Language/SQF.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/SQF Language/SQF.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 780.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3647,
+						"buffer_size": 8008,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2806,
-								2806
+								6214,
+								6214
 							]
 						],
 						"settings":
@@ -558,8 +610,8 @@
 							"syntax": "Packages/SQF Language/SQF.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 468.0,
+						"translation.x": -0.0,
+						"translation.y": 1326.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -567,19 +619,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
+					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5551,
+						"buffer_size": 7430,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3746,
-								3746
+								7390,
+								7390
 							]
 						],
 						"settings":
@@ -591,10 +643,401 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 819.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server/functions/fn_getPos3D.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 469,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								293,
+								293
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "server/functions/fn_vehicleInit.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3807,
+								3807
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 39.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14113,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										251,
+										265
+									],
+									[
+										283,
+										297
+									],
+									[
+										672,
+										686
+									],
+									[
+										904,
+										918
+									],
+									[
+										1149,
+										1163
+									],
+									[
+										1236,
+										1250
+									],
+									[
+										1477,
+										1491
+									],
+									[
+										1773,
+										1787
+									],
+									[
+										2004,
+										2018
+									],
+									[
+										2449,
+										2463
+									],
+									[
+										2699,
+										2713
+									],
+									[
+										3099,
+										3113
+									],
+									[
+										3289,
+										3303
+									],
+									[
+										3527,
+										3541
+									],
+									[
+										3900,
+										3914
+									],
+									[
+										4242,
+										4270
+									],
+									[
+										4557,
+										4585
+									],
+									[
+										5051,
+										5079
+									],
+									[
+										5439,
+										5467
+									],
+									[
+										5677,
+										5705
+									],
+									[
+										6080,
+										6108
+									],
+									[
+										6454,
+										6482
+									],
+									[
+										6970,
+										6998
+									],
+									[
+										7420,
+										7448
+									],
+									[
+										7829,
+										7857
+									],
+									[
+										7914,
+										7942
+									],
+									[
+										8010,
+										8038
+									],
+									[
+										8124,
+										8152
+									],
+									[
+										8667,
+										8695
+									],
+									[
+										9139,
+										9167
+									],
+									[
+										9223,
+										9251
+									],
+									[
+										9341,
+										9369
+									],
+									[
+										9896,
+										9924
+									],
+									[
+										10358,
+										10386
+									],
+									[
+										10887,
+										10915
+									],
+									[
+										11149,
+										11177
+									],
+									[
+										11334,
+										11362
+									],
+									[
+										11517,
+										11545
+									],
+									[
+										11837,
+										11865
+									],
+									[
+										12053,
+										12081
+									],
+									[
+										12310,
+										12338
+									],
+									[
+										12602,
+										12630
+									],
+									[
+										12792,
+										12820
+									],
+									[
+										12888,
+										12916
+									],
+									[
+										13230,
+										13258
+									],
+									[
+										13420,
+										13448
+									],
+									[
+										13744,
+										13772
+									],
+									[
+										14014,
+										14042
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								4023,
+								4023
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1235.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/home/markd/arma/arma3/untitled-project.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2594,
+								2594
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Untitled Project",
+							"incomplete_sync": null,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 507.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/home/markd/arma/arma3/safeZone.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8630,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8630,
+								8630
+							]
+						],
+						"settings":
+						{
+							"auto_name": "/*",
+							"incomplete_sync": null,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2150.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "server/spawning/vehicleCreation.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]
