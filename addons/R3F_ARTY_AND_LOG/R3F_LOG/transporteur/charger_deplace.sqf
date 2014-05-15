@@ -127,28 +127,41 @@ else
 				// Choisir une position dégagée (sphère de 50m de rayon) dans le ciel dans un cube de 9km^3
 				// GT: Choose a disengaged position (sphere of radius 50m) in the air in a cube 9km ^ 3
 				private ["_nb_tirage_pos", "_position_attache"];
+				//MD- set position attache to be somewhere random [0-3000, 0-3000, 10000 + 0-3000] (?)
 				_position_attache = [random 3000, random 3000, (10000 + (random 3000))];
 				_nb_tirage_pos = 1;
+				//MD- Have 25 goes at picking a random position that doesn't have any nearby objects within 50m 
+				//MD- https://community.bistudio.com/wiki/nearestObjects
+				//MD- is set at 50m 
 				while {(!isNull (nearestObject _position_attache)) && (_nb_tirage_pos < 25)} do
 				{
 					_position_attache = [random 3000, random 3000, (10000 + (random 3000))];
 					_nb_tirage_pos = _nb_tirage_pos + 1;
 				};
 				
+				//MD- Okay no idea, the PUBVAR is a helipad placed at 0,0,0
+				//MD- only thing i can think of is that it is storing objects
+				//MD- in a hidden location rather than having to serialise the object (and contained objects in the case of a weapon cache),
+				//MD- delete the object and then having to reserialise it when it's unloaded
 				_objet attachTo [R3F_LOG_PUBVAR_point_attache, _position_attache];
 				detach _objet;
 				sleep 0.25;
 				_objet attachTo [R3F_LOG_PUBVAR_point_attache, _position_attache];
+				//MD- but no idea why it's attached, detached and then attached again
+				//MD- but we re-enble collisions between object and vehicle
 				_objet enableCollisionWith _transporteur;
 				
+				//MD- The object has been loaded in the vehicle <whatever>
 				player globalChat format [STR_R3F_LOG_action_charger_deplace_fait, getText (configFile >> "CfgVehicles" >> (typeOf _transporteur) >> "displayName")];
 			}
-			else
-			{
+			else  //MD- Not enough space to load object
+			{ 
+				//MD- Say: There is not enough space in this vehicle.
 				player globalChat STR_R3F_LOG_action_charger_deplace_pas_assez_de_place;
 			};
 		};
 	};
 	
+	//MD- End the operation
 	R3F_LOG_mutex_local_verrou = false;
 };
