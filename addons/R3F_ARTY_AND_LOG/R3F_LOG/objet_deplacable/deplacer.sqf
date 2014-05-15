@@ -190,7 +190,7 @@ else
 			]; //MD- No idea what 1 is though although it must apply to all objects so it might be the common centre point.
 			
 
-			//MD- weapons lists weapons on vehicle (and since arma in vehicle inventory)
+			//MD- weapons lists weapons on vehicle (and, since arma, in vehicle inventory)
 			if (count (weapons _objet) > 0) then
 			{
 				// Le canon doit pointer devant nous (sinon on a l'impression de se faire empaler)
@@ -255,6 +255,8 @@ else
 	
 				sleep 0.25;
 			};
+
+			//MD- Player has been killed or the release(relacher.sqf) script has set the player carrying flag to null
 			
 			// L'objet n'est plus porté, on le repose
 			// GT: The object is no longer worn, based on the
@@ -278,6 +280,7 @@ else
 
 			//MD- Need to wait till I get throught the release script to unlock the mysteries of
 			//MD- what the hell release horizontallly actually does
+			//MD- okay the release script just sets this flag and the 
 			if (R3F_LOG_force_horizontally) then
 			{
 				//MD- reset it to false

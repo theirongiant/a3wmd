@@ -68,6 +68,8 @@
 		// Service offert par le serveur : orienter un objet (car setDir est à argument local)
 		// GT: Service provided by the server: a direct object (as setDir argument is local)
 		//MD- Creates a function and then attached it to the eventhandler of R3F_ARTY_AND_LOG_PUBVAR_setDir
+		//MD- direction changes seem to be local only so the server creates a public variable
+		//MD- and then watches it for changes and performs the object rotation on the server.
 		R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir =
 		{
 			private ["_objet", "_direction"];
@@ -103,12 +105,14 @@
 	#endif
 	
 	// Auto-détection permanente des objets sur le jeu
+	// GT: Permanent auto-detection of objects on the game
 	if (isDedicated) then
 	{
 		// Version allégée pour le serveur dédié
+		// GT: Light version for dedicated server
 		//execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets_dedie.sqf";
 	}
-	else
+	else //MD- Would suggest this is only run on mp clients
 	{
 		//MD- runs watch_new_objects script
 		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";

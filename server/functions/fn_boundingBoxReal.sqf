@@ -10,6 +10,13 @@ _vehicle = _this;
 _realBoundingBoxes =
 [
 	// Vehicle variants are ordered according to their class inheritance, disrupting those orders can cause unexpected results
+	//MD- Not sure why the order would affect the results
+	//MD- isKindOf (used below) returns true is it is a subtype so perhaps the order would return false positives
+	//MD- i.e. MRAP_01_gmg_base_F might return true for isKindOF("MRAP_01_bae_F")
+
+	//MD- Every time this script is called this array is going to be redefined
+	//MD- Wonder if it could be stored publicly and an index created on init
+	//MD- which would avoid the need to to the kindOf loop?
 	["Quadbike_01_base_F", [[-0.6,-1.2,-1.6],[0.6,1.1,-0.3]]],
 	["Hatchback_01_base_F", [[-1,-2.6,-1.5],[0.9,2.3,0.3]]],
 	["C_Van_01_box_F", [[-1.2,-3.5,-1.9],[1.2,2.2,1.5]]],
@@ -85,12 +92,15 @@ _realBoundingBoxes =
 ];
 
 {
+	//MD- checks for matching vehicle, exitWith quits when we have found a match
+	//MD- rather than perform extraneous checks
 	if (_vehicle isKindOf (_x select 0)) exitWith
 	{
 		_boundingBoxReal = _x select 1;
 	};
 } forEach _realBoundingBoxes;
 
+//MD- if there isn't an entry fallback to BIS function
 if (isNil "_boundingBoxReal") then
 {
 	_boundingBoxReal = boundingBoxReal _vehicle;

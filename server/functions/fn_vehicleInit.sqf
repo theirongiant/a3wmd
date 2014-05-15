@@ -12,6 +12,8 @@
 
 //MD- Called from remorquer_deplace and passed [_objet, {_this lockDriver true}, false, false, _objet] (_objet is the object being hitched)
 
+//MD- Also called from detacher and passed [_objet, {_this call detachTowedObject}, false, false, _objet] (_objet is the object being unhitched)
+
 private ["_vehicle", "_customInit", "_persistence", "_thisCheck", "_target"];
 
 //MD- set un-init'ed vars to their defaults
@@ -85,5 +87,5 @@ if (typeName _customInit == "STRING") then
 
 //MD- customInit has been passed as code (it has) or passed as string (it hasn't) and been compiled in the if above
 //MD- aaaand were back to the mysteries of TPG_fnc_MP
-//MD- but lets assume that it locks the vehicle
+//MD- but lets assume that it locks/detaches the vehicle
 [[[netId _vehicle, _customInit], {(objectFromNetId (_this select 0)) call (_this select 1)}], "BIS_fnc_spawn", _target, _persistence] call TPG_fnc_MP;
