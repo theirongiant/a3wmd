@@ -71,7 +71,7 @@ while {true} do
 				//MD- MOVE OBJECT VALID
 				R3F_LOG_action_deplacer_objet_valide = (vehicle player == player && //MD- Player isn't in vehicle AND
 					(count crew _objet_pointe == 0) &&  //MD- Object doesn't have a crew AND
-					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Object player is moving is null AND
+					(isNull R3F_LOG_joueur_deplace_objet) && //MD- Player isn't already moving an object AND
 					(
 						isNull (_objet_pointe getVariable "R3F_LOG_est_deplace_par") ||  //MD- player that is moving object is null OR
 						(!alive (_objet_pointe getVariable "R3F_LOG_est_deplace_par")) //MD- player that is moving object is dead

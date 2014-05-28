@@ -24,43 +24,34 @@
 	"buffers":
 	[
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
+			"file": "init.sqf",
 			"settings":
 			{
-				"buffer_size": 3873,
+				"buffer_size": 3162,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/notes.txt",
+			"file": "server/init.sqf",
 			"settings":
 			{
-				"buffer_size": 965,
-				"line_ending": "Unix",
-				"name": "notes.txt"
-			}
-		},
-		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
-			"settings":
-			{
-				"buffer_size": 8008,
+				"buffer_size": 7691,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/detacher.sqf",
+			"file": "server/antihack/setup.sqf",
 			"settings":
 			{
-				"buffer_size": 2832,
+				"buffer_size": 4043,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/selectionner_objet.sqf",
+			"file": "server/antihack/serverSide.sqf",
 			"settings":
 			{
-				"buffer_size": 846,
+				"buffer_size": 4557,
 				"line_ending": "Unix"
 			}
 		}
@@ -102,17 +93,44 @@
 	},
 	"file_history":
 	[
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/rotate.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/flagHandler.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/antihack/compileFuncs.sqf",
 		"/home/markd/arma/arma3/WastelandMD/client/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/relacher.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/detacher.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/proving_ground/macros.hpp",
+		"/home/markd/arma/arma3/WastelandMD/addons/proving_ground/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/notes/action_valid_flags.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/surveiller_nouveaux_objets.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/notes/menu_actions.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/notes/main_loops.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/surveiller_conditions_actions_menu.sqf",
+		"/home/markd/arma/arma3/untitled-project-2.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/proving_ground/defs.hpp",
+		"/home/markd/arma/arma3/WastelandMD/config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/storeConfig.sqf",
+		"/home/markd/arma/arma3/untitled-project.txt",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/config.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/notes.txt",
+		"/home/markd/arma/arma3/WastelandMD/globalCompile.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/heliporteur/heliporteur_init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/transporteur/selectionner_objet.sqf",
+		"/home/markd/arma/arma3/WastelandMD/init.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/addons_config/ACE_OA_objects.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/transporteur/charger_deplace.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/selectionner_objet.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_boundingBoxReal.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/detachTowedObject.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/deplacer.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/detacher.sqf",
+		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_vehicleInit.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/rotate.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/relacher.sqf",
+		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/remorquer_deplace.sqf",
 		"/home/markd/iomart/ControlPanel2/controllers/account_management/payment_details/main.cfm",
 		"/home/markd/iomart/ControlPanel2/help/account/autorenewcard.html",
 		"/home/markd/arma/arma3/WastelandMD/client/functions/requestStoreObject.sqf",
@@ -121,17 +139,11 @@
 		"/home/markd/iomart/ControlPanel2/cfcomponents/account/paymentdetails.cfc",
 		"/home/markd/java/IHCP/web/js/externalboxes2.js",
 		"/home/markd/arma/arma3/WastelandMD/server/spawning/vehicleCreation.sqf",
-		"/home/markd/arma/arma3/untitled-project.txt",
-		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_vehicleInit.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
 		"/home/markd/arma/arma3/safeZone.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/fn_getPos3D.sqf",
 		"/home/markd/arma/arma3/WastelandMD/persistence/world/oSave.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_deplacable/objectLockStateMachine.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/compileFuncs.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/antihack/setup.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/config.sqf",
-		"/home/markd/arma/arma3/WastelandMD/globalCompile.sqf",
 		"/home/markd/arma/arma3/WastelandMD/README.md",
 		"/home/markd/arma/arma3/AI_Test.Altis/AIBEHAVIOR1.fsm",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/surveiller_conditions_actions_menu.sqf",
@@ -140,7 +152,6 @@
 		"/home/markd/arma/arma3/WastelandMD/client/functions/getMoveParams.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_ARTY_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/dictionary.txt",
-		"/home/markd/arma/arma3/WastelandMD/init.sqf",
 		"/home/markd/arma/arma3/WastelandMD/notes/scriptcalls.txt",
 		"/home/markd/arma/arma3/WastelandMD/make_pbo.bat",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/R3F_LOG/objet_init.sqf",
@@ -198,8 +209,6 @@
 		"/home/markd/arma/arma3/WastelandMD/server/functions/setupStoreNPC.sqf",
 		"/home/markd/arma/arma3/WastelandMD/client/systems/selling/sellCrateItems.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_EN/en_strings_lang.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
-		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/config.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/en_strings_lang.sqf",
 		"/home/markd/arma/arma3/WastelandMD/addons/R3F_ARTY_AND_LOG/R3F_LOG_disable_enable.sqf",
 		"/home/markd/arma/arma3/WastelandMD/notes/orderofexe.txt",
@@ -208,28 +217,10 @@
 		"/home/markd/arma/arma3/WastelandMD/server/functions/findClientPlayer.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MPexec.sqf",
 		"/home/markd/arma/arma3/WastelandMD/server/functions/network/fn_MP.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/flagHandler.sqf",
 		"/home/markd/arma/arma3/duws/orderofexe.txt",
 		"/home/markd/arma/arma3/duws/description.ext",
 		"/home/markd/arma/arma3/duws/INIT.sqf",
-		"/home/markd/arma/arma3/duws/debriefing.hpp",
-		"/home/markd/arma/arma3/duws/persistent/experience/experience_init.sqf",
-		"/home/markd/arma/arma3/duws/persistent/experience/experience_ability_check.sqf",
-		"/home/markd/iomart/ControlPanel2/cfcomponents/domain/dns.cfc",
-		"/home/markd/iomart/ControlPanel2/multibrand/controllers/domain_management/domain/dns.cfm",
-		"/home/markd/iomart/ControlPanel2/multibrand/controllers/index.cfm",
-		"/home/markd/arma/arma3/duws/persistent/persistent_stats_init.sqf",
-		"/home/markd/arma/arma3/duws/WARCOM/WARCOM_wp_opf_qrf.sqf",
-		"/home/markd/arma/arma3/duws/dialog/hc_init.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/clientFlagHandler.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/antihack/filterExecAttempt.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/functions/serverCompile.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/functions/network/generateKey.sqf",
-		"/home/markd/arma/arma3/WastelandMD/w3ooa.txt",
-		"/home/markd/arma/arma3/WastelandMD/server/default_config.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/functions/objectsSpawning.sqf",
-		"/home/markd/arma/arma3/WastelandMD/server/spawning/objectCreation.sqf"
+		"/home/markd/arma/arma3/duws/debriefing.hpp"
 	],
 	"find":
 	{
@@ -270,6 +261,31 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"A3W_network_compileFuncs",
+			"_networkCompile",
+			"vChecksum",
+			"proving_ground",
+			"╚",
+			"_objet_pointe setVariable",
+			"R3F_LOG_action_remorquer_selection_valide",
+			"STR_R3F_LOG_action_remorquer_deplace",
+			"R3F_LOG_action_remorquer_deplace_valide",
+			"STR_R3F_LOG_action_charger_deplace",
+			"R3F_LOG_action_selectionner_objet_charge_valide",
+			"R3F_LOG_action_charger_deplace_valide",
+			"true_",
+			"cop",
+			"\\{",
+			"{",
+			"\\}",
+			"\\{",
+			"{",
+			";",
+			"X_Server",
+			"R3F_LOG_FNCT_objet_init",
+			"R3F_LOG_PUBVAR_point_attache",
+			"R3F_LOG_classes_objets_transportables",
+			"detachTowedObject",
 			"R3F_LOG_FNCT_objet_init",
 			"//MD- * isServer",
 			"R3F_LOG_force_horizontally",
@@ -372,32 +388,7 @@
 			"surveiller_nouveaux_objects.sqf",
 			"_objet",
 			"R3F_LOG_FNCT_transporteur_init",
-			"R3F_LOG_CFG_objets_transportables",
-			"R3F_LOG_FNCT_remorqueur_init",
-			"R3F_LOG_FNCT_heliporteur_init",
-			"R3F_LOG_FNCT_objet_init",
-			"R3F_LOG_classes_objets_transportables",
-			"R3F_LOG_CFG_transporteurs",
-			"R3F_LOG_classes_transporteurs",
-			"R3F_LOG_objet_selectionne",
-			"R3F_LOG_mutex_local_verrou",
-			"R3F_LOG_joueur_deplace_objet",
-			"R3F_LOG_PUBVAR_point_attache",
-			"R3F_LOG_joueur_deplace_objet =",
-			"R3F_ARTY_AND_LOG_FNCT_PUBVAR_setDir",
-			"findClientPlayer",
-			"BIS_fnc_MP_packet",
-			"bis_functions_mainscope",
-			"TPG_fnc_MPexec",
-			"evaluate",
-			"managedns",
-			"Warning - only use these tools",
-			"TPG_fnc_MP",
-			"TPG_fnc_MPexec",
-			"clientFlagHandler",
-			"_networkCompile",
-			"A3W_network_compileFuncs",
-			"compileFuncs.sqf"
+			"R3F_LOG_CFG_objets_transportables"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -405,6 +396,10 @@
 		"regex": true,
 		"replace_history":
 		[
+			"{\\n",
+			"\\n}",
+			"\\n{",
+			";\\n",
 			"'",
 			"detach.sqf",
 			"cancel_towing.sqf",
@@ -518,87 +513,24 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/en_strings_lang.sqf",
+					"file": "init.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3873,
+						"buffer_size": 3162,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2569,
-								2569
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SQF Language/SQF.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 234.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "addons/R3F_ARTY_AND_LOG/notes.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 965,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								928,
-								928
-							]
-						],
-						"settings":
-						{
-							"auto_name": "notes.txt",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/objet_init.sqf",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8008,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6212,
-								6212
+								2952,
+								2952
 							]
 						],
 						"settings":
@@ -610,27 +542,59 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1638.0,
+						"translation.y": 429.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server/init.sqf",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7691,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								332,
+								332
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/SQF Language/SQF.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 78.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/detacher.sqf",
+					"buffer": 2,
+					"file": "server/antihack/setup.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2832,
+						"buffer_size": 4043,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								673,
-								673
+								3354,
+								3354
 							]
 						],
 						"settings":
@@ -642,27 +606,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 780.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "addons/R3F_ARTY_AND_LOG/R3F_LOG/remorqueur/selectionner_objet.sqf",
+					"buffer": 3,
+					"file": "server/antihack/serverSide.sqf",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 846,
+						"buffer_size": 4557,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								3547,
+								3547
 							]
 						],
 						"settings":
@@ -673,11 +637,11 @@
 							"syntax": "Packages/SQF Language/SQF.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 819.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -787,7 +751,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 335.0,
+	"side_bar_width": 283.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

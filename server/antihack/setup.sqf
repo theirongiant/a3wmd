@@ -70,15 +70,22 @@ if (isNil "ahSetupDone") then
 	publicVariable "A3W_network_compileFuncs";
 	//MD- Wait till completion
 	waitUntil {sleep 0.1; scriptDone _networkCompile};
-	
+
+	//MD- This prevents any attempts to change a3W_network_compileFuncs
+	//MD- by setting the new value to itself in the EH
 	"A3W_network_compileFuncs" addPublicVariableEventHandler { _this set [1, A3W_network_compileFuncs] };
 	
+	//MD- flagHandler compiled and stored locally
 	flagHandler = compileFinal (_assignChecksum + (preprocessFileLineNumbers "server\antihack\flagHandler.sqf"));
+
+	//MD- 
 	[] spawn compile (_assignChecksum + (preprocessFileLineNumbers "server\antihack\serverSide.sqf"));
 	
+	//MD- Take a guess that this kills any hacking scripts that might be broadcast to the server?
 	LystoAntiAntiHack = compileFinal "false";
 	AntiAntiAntiAntiHack = compileFinal "false";
 	
+	//MD- Mark antihack as completed and log message
 	ahSetupDone = compileFinal "true";
 	diag_log "ANTI-HACK 0.8.0: Started.";
 };

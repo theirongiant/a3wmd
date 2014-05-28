@@ -34,12 +34,7 @@ while { true } do
 	//MD- Time since server started.
 	waitUntil {time > 0.1};
 	
-	//MD- Imagine this will always be true as it hasn't been declared so isn't visible in this context?
-	//MD- according to https://community.bistudio.com/wiki/Variables
-	//MD- local variables declared in control structures have limited scope
-	//MD- need to test to see if that includes the if clause in this case
-	//MD- that would be unusual, but kind of helpful I suppose, going to continue 
-	//MD- making that assumption for now
+	//MD- while cheat flag is nil
 	if (isNil "_cheatFlag") then 
 	{
 		//MD- start of forEach(allUnits - playableUnits)

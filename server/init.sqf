@@ -10,7 +10,7 @@ if (!isServer) exitWith {};
 
 externalConfigFolder = "A3Wasteland_settings";
 
-//MD- Create a random string of characters
+//MD- Create a random string of characters - note public var
 vChecksum = compileFinal format ["'%1'", call generateKey];
 
 //Execute Server Side Scripts.

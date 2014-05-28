@@ -18,6 +18,10 @@ _assignPacketKey = [_this, 1, "", [""]] call BIS_fnc_param;
 //MD- Still not getting this - why would be this nil here?
 //MD- fuck it, going to proceed on the assumption that this somehow returns true
 //MD- until i can get this running locally and can poke it with a stick
+
+//MD- going to assume that when this is called the first time by the server then
+//MD- the isNil _flagChecksum evaluates to false and this is skipped. This is also
+//MD- called from client/init.sqf so perhaps this might be executed in that flow
 if (call compile (_assignChecksum + "isNil _flagChecksum")) then
 {
 	//MD- Ignoring these for now until I get an example of a call made with them
@@ -47,5 +51,5 @@ if (call compile (_assignChecksum + "isNil _flagChecksum")) then
 	call compile (_assignChecksum + "call compile format ['%1 = compileFinal str true', _flagChecksum]");
 };
 
-//MD- if anyone tries to change the mpPacketKey then call TPG_fnc_MPExec
+//MD- if anyone tries to change the mpPacketKey then call TPG_fnc_MPExec 
 call compile (_assignPacketKey + "_mpPacketKey addPublicVariableEventHandler compileFinal '_this call TPG_fnc_MPexec'");

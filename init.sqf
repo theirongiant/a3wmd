@@ -31,7 +31,6 @@ if (!isDedicated) then { X_Client = true };
 if (isNull player) then { X_JIP = true };
 
 
-//MD- Guess this is only run in debug - nope is passing value of DEBUG to the script
 //MD- call passes [DEBUG] in globalCompile.sqf - https://community.bistudio.com/wiki/call
 //MD- compile - https://community.bistudio.com/wiki/compile
 //MD- preprocessFileLineNumbers - https://community.bistudio.com/wiki/preprocessFileLineNumbers

@@ -9,6 +9,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+//MD- Deal with objects that are player moveable and transportable
+
 //MD- Usual if we're busy, tell the user and exit
 if (R3F_LOG_mutex_local_verrou) then
 {

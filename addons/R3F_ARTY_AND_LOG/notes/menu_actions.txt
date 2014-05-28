@@ -1,0 +1,23 @@
+Menu Action Calls
+-----------------
+
+
+
+< : AddAction or other event handler
+x : execVM, call, or spawn
+
+Move Object  										<  .\R3F_LOG\objet_deplacable\deplacer.sqf
+	Release Object  							<	 .\R3F_LOG\objet_deplacable\relacher.sqf
+	Release Horizontal  					<  .\R3F_LOG\objet_deplacable\relacher.sqf
+	Rotate Object  								<  .\R3F_LOG\objet_deplacable\rotate.sqf
+Lock  													<  .\R3F_LOG\objet_deplacable\objectLockStateMachine.sqf
+Unlock  												<  .\R3F_LOG\objet_deplacable\objectLockStateMachine.sqf
+Tow the object (moveable)				<  .\R3F_LOG\remorqueur\remorquer_deplace.sqf (hitch a movable)
+Tow the object  								<  .\R3F_LOG\remorqueur\selectionner_objet.sqf
+Untow object  									<  .\R3F_LOG\remorqueur\detacher.sqf
+	Call to 											x  .\server\functions\fn_BoundingBoxReal.sqf
+	Call to 											x  .\server\functions\detachTowedObject.sqf
+	Call to 											x  .\server\functions\fn_vehicleInit.sqf
+	Call to 											x  .\R3F_LOG\objet_deplacable\deplacer.sqf
+Load in vehicle									<  .\R3F_LOG\transporteur\charger_deplace.sqf
+Load in 												<  .\R3F_LOG\transporteur\selectionnere_objet.sqf

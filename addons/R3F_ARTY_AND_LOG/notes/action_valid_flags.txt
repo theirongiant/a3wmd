@@ -1,0 +1,58 @@
+Action Valid Flags
+------------------
+
+if the object pointed at isn't null
+
+	if object is within 14m and ( !multiplayer || object isn't local || {[":-", netId _objet_pointe] call fn_findString == -1} )
+
+		if object is a movable
+
+			R3F_LOG_action_deplacer_objet_valide													// load moveable is valid - Load carried object
+			------------------------------------
+			 	Player isn't in vehicle AND
+				Object doesn't have a crew AND
+				R3F_LOG_joueur_deplace_objet is null AND  									// Variable holding object player is currently moving
+					Objects R3F_LOG_est_deplace_par variable is null OR				// Object variable holding player that is currently moving it
+					The player referenced by objects R3F_LOG_est_deplace_par variable is dead
+				AND
+				Objects R3F_LOG_est_transporte_par variable is null AND 		// Object variable holding vehicle transporting it
+				Objects R3F_LOG_disabled flag isn't set
+
+		end if
+
+
+		if object is towable
+
+			if object is movable
+
+				R3F_LOG_action_remorquer_deplace_valide
+				---------------------------------------
+					Player isn't in a vehicle AND
+					R3F_LOG_joueur_deplace_objet is alive AND ???
+						the object doesn't have a driver OR
+							the player isn't the driver AND
+							object doesn't have a UAV pilot
+					AND
+					R3F_LOG_joueur_deplace_objet is the player who is currently moving is this object AND
+						There are 1 or more Tow-ers within 18 metres that...
+							aren't the object pointed to
+							are alive
+							tow-ers R3F_LOG_remorque variable is null (not already towing something)
+							it's not moving move than 6m a second
+							it's less than 2m off the ground
+							tow-ers R3F_LOG_disabled variable isn't true
+					AND
+						objects R3F_LOG_disabled isn't true
+			end if
+
+		end if
+
+
+
+	end if
+
+else
+
+	sleep
+
+end if

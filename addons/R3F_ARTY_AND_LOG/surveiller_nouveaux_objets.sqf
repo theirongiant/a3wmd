@@ -54,35 +54,37 @@ while {true} do
 				_objet = _x;
 				
 				//MD- Ignore if it's already been initialised
+				//MD- second variable is a  default value to return if the value is null
 				if !(_objet getVariable ["R3F_LOG_init_done", false]) then
 				{
 					
 					#ifdef R3F_LOG_enable
-					// If object can be moved / airlifted / towed / loaded in
-					if ({_objet isKindOf _x} count _liste_objets_depl_heli_remorq_transp > 0) then
-					{
-						[_objet] spawn R3F_LOG_FNCT_objet_init;
-					};
-					
-					// If vehicle can airlift
-					if ({_objet isKindOf _x} count R3F_LOG_CFG_heliporteurs > 0) then
-					{
-						[_objet] spawn R3F_LOG_FNCT_heliporteur_init;
-					};
+						// If object can be moved / airlifted / towed / loaded in
+						if ({_objet isKindOf _x} count _liste_objets_depl_heli_remorq_transp > 0) then
+						{
+							[_objet] spawn R3F_LOG_FNCT_objet_init;
+						};
+						
+						// If vehicle can airlift
+						if ({_objet isKindOf _x} count R3F_LOG_CFG_heliporteurs > 0) then
+						{
+							[_objet] spawn R3F_LOG_FNCT_heliporteur_init;
+						};
 
-					// If vehicle can transport contents
-					if ({_objet isKindOf _x} count R3F_LOG_classes_transporteurs > 0) then
-					{
-						[_objet] spawn R3F_LOG_FNCT_transporteur_init;
-					};
-					
-					// If vehicle can tow
-					if ({_objet isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
-					{
-						[_objet] spawn R3F_LOG_FNCT_remorqueur_init;
-					};
-					
-					_objet setVariable ["R3F_LOG_init_done", true]; 
+						// If vehicle can transport contents
+						if ({_objet isKindOf _x} count R3F_LOG_classes_transporteurs > 0) then
+						{
+							[_objet] spawn R3F_LOG_FNCT_transporteur_init;
+						};
+						
+						// If vehicle can tow
+						if ({_objet isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
+						{
+							[_objet] spawn R3F_LOG_FNCT_remorqueur_init;
+						};
+						
+						//MD- set init_done to true, note this isn't broadcast
+						_objet setVariable ["R3F_LOG_init_done", true]; 
 					#endif
 				};
 				
